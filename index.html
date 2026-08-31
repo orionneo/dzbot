@@ -4,20 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#060816">
-<meta name="description" content="DZbot — inteligência para guilds e PTs no RubinOT, dentro do Discord.">
+<meta name="description" content="DZbot — inteligência operacional para guilds e PTs no RubinOT, direto no Discord.">
 <title>DZbot — RubinOT Intelligence</title>
 <link rel="icon" type="image/png" href="assets/favicon-v9.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="bg-grid"></div>
-<div class="ambient a1"></div><div class="ambient a2"></div>
-<div class="particles" id="particles"></div>
+<div class="ambient a1"></div>
+<div class="ambient a2"></div>
+<div class="particle-field" id="particleField"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="navbar" id="navbar">
-  <a href="#inicio" class="nav-brand" aria-label="DZbot">
-    <span class="brand-glow"></span>
+  <a href="#inicio" class="brand">
+    <span class="brand-halo"></span>
     <img src="assets/logo-dzbot-v9.png" alt="DZbot RubinOT">
   </a>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
@@ -28,45 +29,84 @@
     <a href="#comparativo">Por que mudar</a>
     <a href="#exemplos">Exemplos</a>
     <a href="#implantacao">Implantação</a>
+    <a href="#faq">FAQ</a>
   </nav>
   <a href="#" class="nav-cta js-whatsapp">Falar com vendedor <span>→</span></a>
 </header>
 
 <main>
 <section class="hero" id="inicio">
-  <div class="hero-energy"></div>
-  <div class="hero-card" id="heroCard">
-    <div class="hero-aura"></div>
-    <img src="assets/logo-dzbot-v9.png" alt="DZbot" class="hero-logo">
-  </div>
-  <div class="hero-copy">
-    <span class="hero-badge">🔥 O BOT DEFINITIVO PARA SUA GUILD OU PT</span>
-    <h1>Faça seu Discord <em>trabalhar por você.</em></h1>
-    <p>Player Tracker, Boss Intelligence, Bazaar, skills, mortes, rankings e sinais operacionais reunidos em uma experiência única para RubinOT.</p>
-    <div class="hero-actions">
-      <a href="#" class="btn btn-primary shimmer js-whatsapp">Adicionar inteligência ao Discord <b>→</b></a>
-      <a href="#modulos" class="btn btn-glass">Ver recursos</a>
+  <div class="hero-noise"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-logo-wrap" id="heroLogoWrap">
+        <div class="hero-aura"></div>
+        <img class="hero-logo" src="assets/logo-dzbot-v9.png" alt="DZbot">
+      </div>
+      <span class="hero-badge">🔥 O BOT DEFINITIVO PARA SUA GUILD OU PT</span>
+      <h1>Faça seu Discord <em>trabalhar por você.</em></h1>
+      <p>Chega de jogar com informação espalhada. O DZbot transforma sinais do RubinOT em contexto útil para a sua guild ou PT agir mais rápido, caçar melhor e perder menos tempo.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn primary shimmer js-whatsapp">Quero inteligência no meu Discord <b>→</b></a>
+        <a href="#modulos" class="btn secondary">Ver o que o DZbot faz</a>
+      </div>
+      <div class="hero-proof">
+        <span><i></i>Monitoramento contínuo</span><span>Discord-first</span><span>RubinOT</span><span>Guild + PT</span>
+      </div>
     </div>
-    <div class="hero-proof">
-      <span><i></i>Monitoramento contínuo</span>
-      <span>Discord-first</span>
-      <span>RubinOT</span>
-      <span>Guild + PT</span>
-    </div>
+
+    <aside class="hero-rotator" id="heroRotator">
+      <div class="rotator-head"><span>◆ DZBOT LIVE HIGHLIGHTS</span><b id="heroRotatorCounter">01 / 05</b></div>
+      <div class="hero-slide active" data-hero-slide>
+        <small>PLAYER TRACKER</small>
+        <h3>Cansado de perguntar “quem tá online?”</h3>
+        <p>O DZbot mostra quem entrou, quem saiu, sessão, level e PT disponível no canal certo.</p>
+        <div class="hero-mini-stat"><b>FRIEND ONLINE</b><span>PT disponível agora</span></div>
+      </div>
+      <div class="hero-slide" data-hero-slide>
+        <small>BOSS INTELLIGENCE</small>
+        <h3>Chega de descobrir o boss tarde demais.</h3>
+        <p>Radar de atenção e contexto para você saber onde vale colocar os olhos antes da concorrência.</p>
+        <div class="hero-mini-stat gold"><b>BOSS SIGNAL</b><span>Janela de atenção ativa</span></div>
+      </div>
+      <div class="hero-slide" data-hero-slide>
+        <small>BAZAAR INTELLIGENCE</small>
+        <h3>Oportunidade não espera você abrir outra aba.</h3>
+        <p>Top, watch e interesse destacam chars que realmente merecem atenção.</p>
+        <div class="hero-mini-stat cyan"><b>BAZAAR WATCH</b><span>Top 10 atualizado</span></div>
+      </div>
+      <div class="hero-slide" data-hero-slide>
+        <small>PLAYER DNA</small>
+        <h3>Quer inteligência de verdade?</h3>
+        <p>Ritmo, consistência, evolução e histórico observado viram contexto para decisão.</p>
+        <div class="hero-mini-stat purple"><b>PLAYER DNA</b><span>Padrão identificado</span></div>
+      </div>
+      <div class="hero-slide" data-hero-slide>
+        <small>DZ DAILY</small>
+        <h3>Acorde sabendo o que aconteceu.</h3>
+        <p>Online, evolução, mortes e pressão resumidos automaticamente no Discord.</p>
+        <div class="hero-mini-stat green"><b>DAILY READY</b><span>Resumo operacional</span></div>
+      </div>
+      <div class="rotator-controls">
+        <button id="heroPrev">←</button>
+        <div id="heroDots"></div>
+        <button id="heroNext">→</button>
+      </div>
+    </aside>
   </div>
 </section>
 
 <section class="modules section" id="modulos">
   <div class="section-head">
     <span>PAINEL DE INTELIGÊNCIA</span>
-    <h2>Escolha o sinal. <em>Veja o DZbot agir.</em></h2>
-    <p>Os módulos abaixo são navegação real do produto: hover ou clique e o preview muda com uma mensagem verdadeira do bot.</p>
+    <h2>Escolha o sinal. <em>Veja a função correta.</em></h2>
+    <p>Fizemos um pente-fino: cada módulo agora aponta para um conteúdo coerente com a função. Quando não existe print real de boss, o site usa uma visualização contextual — nunca uma landing page antiga.</p>
   </div>
 
-  <div class="module-tabs" role="tablist">
+  <div class="module-tabs">
     <button class="module-tab active" data-module="player"><i class="mi blue">👤</i><b>Player Tracker</b><small>online · sessão · PT</small></button>
-    <button class="module-tab" data-module="guild"><i class="mi violet">👥</i><b>Guild Watch</b><small>radar da guild</small></button>
-    <button class="module-tab" data-module="boss"><i class="mi red">🎯</i><b>Boss Radar</b><small>spawn · janela</small></button>
+    <button class="module-tab" data-module="guild"><i class="mi violet">👥</i><b>Guild Watch</b><small>atividade da guild</small></button>
+    <button class="module-tab" data-module="boss"><i class="mi red">🎯</i><b>Boss Radar</b><small>sinal · atenção</small></button>
     <button class="module-tab" data-module="bazaar"><i class="mi gold">💰</i><b>Bazaar</b><small>top · watch</small></button>
     <button class="module-tab" data-module="skills"><i class="mi cyan">📊</i><b>Skills</b><small>ranking · digest</small></button>
     <button class="module-tab" data-module="death"><i class="mi pink">💀</i><b>Deaths</b><small>PvE/PvP · histórico</small></button>
@@ -75,17 +115,29 @@
   </div>
 
   <div class="module-stage">
-    <div class="module-copy" id="moduleCopy">
+    <div class="module-copy">
       <span id="moduleTag">PLAYER TRACKER</span>
       <h3 id="moduleTitle">Saiba quem entrou, saiu e está pronto para PT.</h3>
       <p id="moduleText">Status, sessão, level e contexto operacional chegam no Discord sem consulta manual.</p>
       <ul id="modulePoints"><li>Status online/offline</li><li>Sessão observada</li><li>Friend / Enemy / Watch</li></ul>
-      <a class="inline-cta js-whatsapp" href="#">Quero este módulo →</a>
+      <a href="#" class="inline-cta js-whatsapp">Quero este módulo →</a>
     </div>
-    <div class="discord-frame" id="discordFrame">
-      <div class="discord-header"><span class="discord-logo">DZ</span><b>DZbot</b><i>APP</i><em>● LIVE</em></div>
-      <div class="discord-screen"><img id="moduleImage" src="assets/screens/friend-online.webp" alt="Preview real DZbot"></div>
-      <div class="discord-footer"><b id="moduleCaption">Player Tracker</b><span>Screenshot real do Discord</span></div>
+
+    <div class="preview-shell" id="previewShell">
+      <div class="preview-head"><span class="dz-chip">DZ</span><b>DZbot</b><i>APP</i><em>● LIVE</em></div>
+      <div class="preview-body">
+        <img id="moduleImage" src="assets/screens/friend-online.webp" alt="Preview real DZbot">
+        <div class="boss-context hidden" id="bossContext">
+          <img src="assets/art/boss.webp" alt="Boss Intelligence">
+          <div>
+            <small>BOSS INTELLIGENCE</small>
+            <h4>Radar de atenção</h4>
+            <p>Boss estratégico em observação</p>
+            <span>CRITICAL WINDOW</span>
+          </div>
+        </div>
+      </div>
+      <div class="preview-foot"><b id="moduleCaption">Player Tracker</b><span id="moduleSource">Screenshot real do Discord</span></div>
     </div>
   </div>
 </section>
@@ -93,87 +145,85 @@
 <section class="live section" id="produto-vivo">
   <div class="section-head">
     <span>PRODUTO VIVO</span>
-    <h2>Se o produto é vivo, <em>a vitrine também precisa ser.</em></h2>
-    <p>Carrossel automático com mensagens reais do DZbot, branding da marca e arte de contexto. Passe o mouse para pausar; no celular, deslize.</p>
+    <h2>Agora funciona. <em>E chama atenção.</em></h2>
+    <p>Removemos o track quebrado. Os slides ficam empilhados e alternam por estado ativo — sem risco de sumirem para fora da tela.</p>
   </div>
-  <div class="carousel-shell">
-    <button class="carousel-arrow prev" id="livePrev">←</button>
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="liveTrack">
-        <article class="live-card">
-          <div class="card-brand"><img src="assets/logo-dzbot-v9.png"></div>
-          <div class="card-art art-knight"></div>
-          <div class="card-shot"><img src="assets/screens/friend-online.webp"></div>
-          <div class="card-copy"><span>PLAYER TRACKER</span><h3>A PT sabe quando é hora de chamar.</h3><p>Entrada, sessão, level e disponibilidade com leitura instantânea.</p></div>
-        </article>
-        <article class="live-card">
-          <div class="card-brand"><img src="assets/logo-dzbot-v9.png"></div>
-          <div class="card-art art-boss"></div>
-          <div class="card-shot"><img src="assets/screens/enemy-offline.webp"></div>
-          <div class="card-copy"><span>WAR / BOSS SIGNAL</span><h3>O canal certo recebe o sinal certo.</h3><p>Menos consulta manual e mais decisão coordenada.</p></div>
-        </article>
-        <article class="live-card">
-          <div class="card-brand"><img src="assets/logo-dzbot-v9.png"></div>
-          <div class="card-art art-bazaar"></div>
-          <div class="card-shot"><img src="assets/screens/bazaar.webp"></div>
-          <div class="card-copy"><span>BAZAAR INTELLIGENCE</span><h3>Oportunidade não espera.</h3><p>Top, watch, interesse e acesso rápido ao leilão.</p></div>
-        </article>
-        <article class="live-card">
-          <div class="card-brand"><img src="assets/logo-dzbot-v9.png"></div>
-          <div class="card-art art-death"></div>
-          <div class="card-shot"><img src="assets/screens/death.webp"></div>
-          <div class="card-copy"><span>DEATH INTELLIGENCE</span><h3>Uma morte passa a ter contexto.</h3><p>PvE/PvP, responsável e histórico observado.</p></div>
-        </article>
-        <article class="live-card">
-          <div class="card-brand"><img src="assets/logo-dzbot-v9.png"></div>
-          <div class="card-art art-mage"></div>
-          <div class="card-shot"><img src="assets/screens/skills.webp"></div>
-          <div class="card-copy"><span>SKILL WATCH</span><h3>Progressão que você realmente enxerga.</h3><p>Top skills e mudanças observadas em um só lugar.</p></div>
-        </article>
-      </div>
-    </div>
-    <button class="carousel-arrow next" id="liveNext">→</button>
-    <div class="carousel-dots" id="liveDots"></div>
+
+  <div class="showcase" id="showcase">
+    <button class="showcase-arrow left" id="showPrev">←</button>
+
+    <article class="show-slide active" data-show-slide>
+      <div class="show-art art-player"></div>
+      <div class="show-brand"><img src="assets/logo-dzbot-v9.png"></div>
+      <div class="show-copy"><small>PLAYER TRACKER</small><h3>Chega de caçar player no braço.</h3><p>Friend entrou? Enemy saiu? PT está pronta? O Discord te responde.</p></div>
+      <div class="show-shot"><img src="assets/screens/friend-online.webp"></div>
+    </article>
+
+    <article class="show-slide" data-show-slide>
+      <div class="show-art art-boss"></div>
+      <div class="show-brand"><img src="assets/logo-dzbot-v9.png"></div>
+      <div class="show-copy"><small>BOSS INTELLIGENCE</small><h3>Fique de olho antes de todo mundo.</h3><p>Radar e contexto para priorizar bosses relevantes — sem fingir certeza.</p></div>
+      <div class="show-shot art-only"><img src="assets/art/boss.webp"></div>
+    </article>
+
+    <article class="show-slide" data-show-slide>
+      <div class="show-art art-bazaar"></div>
+      <div class="show-brand"><img src="assets/logo-dzbot-v9.png"></div>
+      <div class="show-copy"><small>BAZAAR INTELLIGENCE</small><h3>Oportunidade não espera.</h3><p>Top por vocação, watch e interesse na mesma experiência.</p></div>
+      <div class="show-shot"><img src="assets/screens/bazaar.webp"></div>
+    </article>
+
+    <article class="show-slide" data-show-slide>
+      <div class="show-art art-death"></div>
+      <div class="show-brand"><img src="assets/logo-dzbot-v9.png"></div>
+      <div class="show-copy"><small>DEATH INTELLIGENCE</small><h3>A morte agora conta uma história.</h3><p>PvE/PvP, responsável e histórico recente do personagem.</p></div>
+      <div class="show-shot"><img src="assets/screens/death.webp"></div>
+    </article>
+
+    <article class="show-slide" data-show-slide>
+      <div class="show-art art-mage"></div>
+      <div class="show-brand"><img src="assets/logo-dzbot-v9.png"></div>
+      <div class="show-copy"><small>DZ DAILY</small><h3>Seu Discord fecha o dia por você.</h3><p>Online, evolução, mortes e pressão condensados automaticamente.</p></div>
+      <div class="show-shot"><img src="assets/screens/daily.webp"></div>
+    </article>
+
+    <button class="showcase-arrow right" id="showNext">→</button>
+    <div class="show-dots" id="showDots"></div>
   </div>
 </section>
 
 <section class="comparison section" id="comparativo">
   <div class="section-head">
-    <span>ANTES × DEPOIS</span>
-    <h2>Seu fluxo antigo ficou para trás. <em>O Discord pode muito mais.</em></h2>
-    <p>Não é sobre demonizar uma ferramenta. É sobre parar de operar como se voz, dados e inteligência precisassem continuar separados.</p>
+    <span>TEAMSPEAK / MÉTODO ANTIGO × DISCORD + DZBOT</span>
+    <h2>Seu time pode continuar reagindo tarde. <em>Ou pode jogar com contexto.</em></h2>
+    <p>O problema não é só voz. É depender de voz + sites + memória + mensagens soltas para tomar decisão.</p>
   </div>
 
   <div class="comparison-grid">
     <article class="compare-card legacy">
-      <div class="compare-brand">
-        <div class="ts-badge">TS</div>
-        <div><small>MÉTODO ANTIGO</small><h3>TeamSpeak + consultas manuais</h3></div>
-      </div>
+      <div class="compare-brand"><div class="legacy-icon">TS</div><div><small>FLUXO ANTIGO</small><h3>TeamSpeak + abas + memória</h3></div></div>
       <ul>
-        <li><b>Informação fragmentada</b><span>Voz em um lugar, sites em outro, contexto perdido.</span></li>
-        <li><b>Bosses dependem de memória</b><span>Se ninguém consulta e avisa, sua PT reage tarde.</span></li>
-        <li><b>Bazaar exige caça manual</b><span>Oportunidades passam enquanto você está jogando.</span></li>
-        <li><b>War sem contexto consolidado</b><span>Friends, enemies, mortes e atividade ficam espalhados.</span></li>
+        <li><b>Informação fragmentada</b><span>Você fala em um lugar e consulta em outro.</span></li>
+        <li><b>Boss descoberto tarde</b><span>Se ninguém consulta, ninguém reage.</span></li>
+        <li><b>Bazaar perdido</b><span>Oportunidade passa enquanto você caça manualmente.</span></li>
+        <li><b>War sem visão única</b><span>Deaths, enemies e atividade espalhados.</span></li>
+        <li><b>Zero memória operacional</b><span>O conhecimento some no chat.</span></li>
       </ul>
-      <div class="compare-verdict bad">Fluxo fragmentado e reativo</div>
+      <div class="verdict bad">Ultrapassado para quem quer inteligência</div>
     </article>
 
-    <div class="vs-core"><span>VS</span><i>→</i></div>
+    <div class="versus"><span>VS</span><i>→</i></div>
 
     <article class="compare-card modern">
-      <div class="compare-brand">
-        <div class="discord-badge">◉</div>
-        <div><small>EXPERIÊNCIA MODERNA</small><h3>Discord + DZbot</h3></div>
-        <img src="assets/logo-dzbot-v9.png" alt="DZbot">
-      </div>
+      <div class="compare-brand"><div class="discord-icon">◉</div><div><small>FLUXO MODERNO</small><h3>Discord + DZbot</h3></div><img src="assets/logo-dzbot-v9.png"></div>
       <ul>
-        <li><b>Alertas em tempo real</b><span>O sinal aparece no canal certo, para a pessoa certa.</span></li>
-        <li><b>Boss Intelligence</b><span>Radar e contexto ajudam a priorizar atenção.</span></li>
-        <li><b>Bazaar monitorado</b><span>Top, watch e interesse reduzem ruído e trabalho manual.</span></li>
-        <li><b>War, mortes e evolução integradas</b><span>O histórico vira inteligência operacional.</span></li>
+        <li><b>Alertas no canal certo</b><span>O sinal encontra quem precisa agir.</span></li>
+        <li><b>Boss Intelligence</b><span>Priorize atenção com contexto, não chute.</span></li>
+        <li><b>Bazaar monitorado</b><span>Top, watch e interesse reduzem ruído.</span></li>
+        <li><b>War Room operacional</b><span>Friends, enemies, mortes e pressão conectados.</span></li>
+        <li><b>Histórico vira inteligência</b><span>DZ Daily, Player DNA e rankings preservam contexto.</span></li>
       </ul>
-      <div class="compare-verdict good">Uma experiência que muda como a guild joga</div>
+      <div class="verdict good">Uma experiência que seu time nunca teve no método antigo</div>
     </article>
   </div>
 </section>
@@ -181,29 +231,44 @@
 <section class="examples section" id="exemplos">
   <div class="section-head">
     <span>EXEMPLOS REAIS</span>
-    <h2>Não conte. <em>Mostre.</em></h2>
-    <p>Prints reais do bot no Discord, cada um mostrando um caso de uso diferente.</p>
+    <h2>Zero repetição. <em>Cada print prova uma coisa.</em></h2>
   </div>
   <div class="example-grid">
-    <button class="example-card wide" data-lightbox="assets/screens/daily.webp"><img src="assets/screens/daily.webp"><div><b>DZ Daily</b><span>Resumo operacional</span></div></button>
-    <button class="example-card tall" data-lightbox="assets/screens/skills.webp"><img src="assets/screens/skills.webp"><div><b>Skill Watch</b><span>Ranking observado</span></div></button>
+    <button class="example-card ex-wide" data-lightbox="assets/screens/daily.webp"><img src="assets/screens/daily.webp"><div><b>DZ Daily</b><span>Resumo operacional</span></div></button>
+    <button class="example-card ex-tall" data-lightbox="assets/screens/skills.webp"><img src="assets/screens/skills.webp"><div><b>Skill Watch</b><span>Ranking observado</span></div></button>
     <button class="example-card" data-lightbox="assets/screens/death.webp"><img src="assets/screens/death.webp"><div><b>Death Intelligence</b><span>PvE/PvP + histórico</span></div></button>
     <button class="example-card" data-lightbox="assets/screens/dna.webp"><img src="assets/screens/dna.webp"><div><b>Player DNA</b><span>Ritmo e padrão</span></div></button>
     <button class="example-card" data-lightbox="assets/screens/bazaar.webp"><img src="assets/screens/bazaar.webp"><div><b>Bazaar</b><span>Top + interesse</span></div></button>
-    <button class="example-card wide" data-lightbox="assets/screens/closing.webp"><img src="assets/screens/closing.webp"><div><b>Fechamento do dia</b><span>Evolução e pressão</span></div></button>
+    <button class="example-card ex-wide" data-lightbox="assets/screens/closing.webp"><img src="assets/screens/closing.webp"><div><b>Fechamento do dia</b><span>Evolução e pressão</span></div></button>
+    <button class="example-card" data-lightbox="assets/screens/enemy-offline.webp"><img src="assets/screens/enemy-offline.webp"><div><b>Enemy Offline</b><span>War signal</span></div></button>
+    <button class="example-card" data-lightbox="assets/screens/player-offline.webp"><img src="assets/screens/player-offline.webp"><div><b>Player Offline</b><span>Sessão e progresso</span></div></button>
   </div>
 </section>
 
 <section class="deployment section" id="implantacao">
   <div class="section-head">
     <span>IMPLANTAÇÃO ASSISTIDA</span>
-    <h2>Do briefing ao live. <em>Sem virar um projeto infinito.</em></h2>
+    <h2>Do primeiro papo ao live. <em>Sem virar projeto infinito.</em></h2>
   </div>
   <div class="step-grid">
-    <article class="step-card active-step"><i>💬</i><b>01</b><span>BRIEFING</span><h3>Entendemos sua operação</h3><p>Guild, PT, objetivos, rotina e canais importantes.</p></article>
-    <article class="step-card"><i>🧩</i><b>02</b><span>COMPOSIÇÃO</span><h3>Montamos os módulos</h3><p>Você recebe o que faz sentido para seu servidor.</p></article>
-    <article class="step-card"><i>⚙️</i><b>03</b><span>PROVISIONAMENTO</span><h3>Configuramos o ambiente</h3><p>Canais, módulos e isolamento por guild.</p></article>
-    <article class="step-card"><i>🚀</i><b>04</b><span>LIVE</span><h3>Você volta a jogar</h3><p>O DZbot passa a acompanhar e entregar os sinais.</p></article>
+    <article class="step-card active-step"><i>💬</i><b>01</b><span>BRIEFING</span><h3>Entendemos como você joga</h3><p>Guild, PT, objetivos, rotina, canais e dores.</p></article>
+    <article class="step-card"><i>🧩</i><b>02</b><span>COMPOSIÇÃO</span><h3>Escolhemos os módulos</h3><p>Você recebe o que realmente gera valor.</p></article>
+    <article class="step-card"><i>⚙️</i><b>03</b><span>PROVISIONAMENTO</span><h3>Montamos seu ambiente</h3><p>Canais, módulos e isolamento por servidor.</p></article>
+    <article class="step-card"><i>🚀</i><b>04</b><span>LIVE</span><h3>Você volta a jogar</h3><p>O DZbot passa a observar e entregar contexto.</p></article>
+  </div>
+</section>
+
+<section class="faq section" id="faq">
+  <div class="section-head">
+    <span>FAQ</span>
+    <h2>Antes de chamar, <em>resolva o que importa.</em></h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q"><span>O DZbot funciona para Tibia Global?</span><b>+</b></button><div class="faq-a"><p>O produto atual é posicionado e configurado para RubinOT.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>Preciso sair do Discord para usar?</span><b>+</b></button><div class="faq-a"><p>Não para o fluxo principal. Alertas, resumos e comandos ficam no Discord; links externos aparecem quando agregam valor, como abrir um leilão.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>Posso escolher só os módulos que preciso?</span><b>+</b></button><div class="faq-a"><p>Sim. A implantação é composta conforme a realidade da guild ou PT.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>As mensagens mostradas no site são reais?</span><b>+</b></button><div class="faq-a"><p>Sim. A galeria usa screenshots reais fornecidos do DZbot em operação, com dados sensíveis ocultados.</p></div></div>
+    <div class="faq-item"><button class="faq-q"><span>Funciona bem no celular?</span><b>+</b></button><div class="faq-a"><p>Sim. Tabs viram navegação horizontal por toque, carrosséis usam swipe e os efeitos pesados são reduzidos.</p></div></div>
   </div>
 </section>
 
@@ -212,24 +277,18 @@
   <img src="assets/logo-dzbot-v9.png" alt="DZbot" class="closing-logo">
   <span>PRONTO PARA MUDAR A EXPERIÊNCIA?</span>
   <h2>Menos ruído. Mais jogo.<br><em>Mais inteligência.</em></h2>
-  <p>Leve o DZbot para o Discord da sua guild ou PT e transforme informação espalhada em contexto acionável.</p>
-  <div class="closing-actions">
-    <a href="#" class="btn btn-primary shimmer js-whatsapp">Falar no WhatsApp <b>→</b></a>
-    <a href="#" class="btn btn-glass js-email">Enviar e-mail</a>
-  </div>
+  <p>Leve o DZbot para o Discord da sua guild ou PT e pare de jogar com informação espalhada.</p>
+  <div class="closing-actions"><a href="#" class="btn primary shimmer js-whatsapp">Falar no WhatsApp <b>→</b></a><a href="#" class="btn secondary js-email">Enviar e-mail</a></div>
 </section>
 </main>
 
 <footer>
-  <div class="footer-main">
-    <img src="assets/logo-dzbot-v9.png" alt="DZbot">
-    <p>RubinOT intelligence. Discord first.</p>
-  </div>
-  <nav><a href="#modulos">Módulos</a><a href="#produto-vivo">Produto vivo</a><a href="#comparativo">Por que mudar</a><a href="#exemplos">Exemplos</a></nav>
+  <div class="footer-brand"><img src="assets/logo-dzbot-v9.png"><p>RubinOT intelligence. Discord first.</p></div>
+  <nav><a href="#modulos">Módulos</a><a href="#produto-vivo">Produto vivo</a><a href="#exemplos">Exemplos</a><a href="#faq">FAQ</a></nav>
   <small>© 2026 DZbot · Projeto independente</small>
 </footer>
 
-<div class="lightbox" id="lightbox" aria-hidden="true"><button id="lightboxClose">×</button><img id="lightboxImage" alt="Screenshot DZbot"></div>
+<div class="lightbox" id="lightbox"><button id="lightboxClose">×</button><img id="lightboxImage"></div>
 <script src="config.js"></script>
 <script src="script.js"></script>
 </body>

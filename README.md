@@ -1,12 +1,11 @@
-# DZbot V11 — Conversion Experience
+# DZbot V12 Impact Revision
 
-## Publicar
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot V11 Conversion Experience"
+git commit -m "DZbot V12 Impact Revision"
 git pull --rebase origin main
 git push origin main
 ```
 
-Não use `--force`.
+Não use `git push --force`.
