@@ -1,18 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 280" role="img" aria-labelledby="t d">
-<title id="t">DZbot</title><desc id="d">Marca DZbot, inteligência premium para RubinOT no Discord</desc>
-<defs>
-  <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
-    <stop stop-color="#7B5CFF"/><stop offset=".48" stop-color="#B95CFF"/><stop offset="1" stop-color="#38D7FF"/>
-  </linearGradient>
-  <linearGradient id="b" x1="0" x2="1"><stop stop-color="#F5F7FF"/><stop offset="1" stop-color="#ADB8D9"/></linearGradient>
-  <filter id="glow"><feGaussianBlur stdDeviation="8" result="x"/><feMerge><feMergeNode in="x"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-</defs>
-<rect width="1040" height="280" rx="48" fill="#070812"/>
-<g transform="translate(34 28)">
-  <path d="M26 198 92 26h124c54 0 79 20 70 59-7 30-30 47-63 55 27 8 37 24 28 51-11 35-46 57-101 57H26zm91-126-19 51h61c25 0 39-8 44-24 5-17-5-27-31-27h-55zm-34 91-17 45h73c26 0 42-8 47-23 5-15-7-22-34-22H83z" fill="url(#a)" filter="url(#glow)"/>
-  <path d="M276 26h166l-18 48-121 124h96l-18 46H206l18-47 122-125h-88z" fill="url(#a)"/>
-  <circle cx="438" cy="50" r="10" fill="#43dcff"/><circle cx="438" cy="50" r="22" fill="none" stroke="#43dcff" opacity=".22"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff3d6e"/><stop offset=".34" stop-color="#9a52ff"/><stop offset=".72" stop-color="#5a6cff"/><stop offset="1" stop-color="#37d8ff"/></linearGradient><linearGradient id="w"><stop stop-color="#fff"/><stop offset="1" stop-color="#aeb9da"/></linearGradient><filter id="gl"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<g transform="translate(6 5)">
+<path d="M92 17c39 7 66 29 77 60-20-14-40-19-61-14 24 8 40 22 47 42-20-7-38-6-53 2 18 4 31 13 39 27-19-2-36 2-49 13-17 15-30 34-38 57-7-28-3-53 11-74-20 5-35 16-47 33 0-37 13-65 39-84-14-1-27 2-39 9 16-32 41-52 74-59z" fill="url(#g)" opacity=".92" filter="url(#gl)"/>
+<path d="M66 75c24-23 52-29 84-17-21 4-38 14-50 31l28 9-35 10-20 32-5-35-26-12z" fill="#080914" stroke="#b266ff" stroke-width="4"/><circle cx="91" cy="81" r="5" fill="#45e2ff"/>
 </g>
-<text x="500" y="183" fill="url(#b)" font-family="Arial,Helvetica,sans-serif" font-size="112" font-weight="900" font-style="italic" letter-spacing="-8">BOT</text>
-<text x="510" y="226" fill="#7B86A8" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="8">RUBINOT INTELLIGENCE</text>
+<g transform="translate(178 20) skewX(-10)">
+<path d="M0 154 54 20h122c47 0 67 18 57 51-7 24-26 39-56 46 24 6 34 19 27 39-10 29-39 44-87 44H0zm80-94-17 43h51c22 0 35-6 39-19 4-15-5-24-28-24H80zm-31 78-13 34h64c22 0 35-6 39-17 4-12-6-17-29-17H49z" fill="url(#g)"/>
+<path d="M224 20h159l-16 40-116 98h89l-16 42H158l16-41 117-99h-83z" fill="url(#g)"/>
+</g>
+<text x="565" y="157" fill="url(#w)" font-family="Arial,Helvetica,sans-serif" font-size="100" font-weight="900" font-style="italic" letter-spacing="-7">BOT</text>
+<text x="576" y="194" fill="#ff4c72" font-family="Arial,Helvetica,sans-serif" font-size="18" font-weight="900" letter-spacing="9">RUBINOT</text>
 </svg>

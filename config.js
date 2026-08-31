@@ -1,5 +1,1 @@
-window.DZBOT_CONFIG = {
-  whatsapp: "5519997988952",
-  email: "diogofzanon@gmail.com",
-  brandName: "DZbot"
-};
+window.DZBOT_CONFIG={whatsapp:"5519997988952",email:"diogofzanon@gmail.com",brandName:"DZbot"};

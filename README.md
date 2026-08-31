@@ -1,43 +1,23 @@
-# DZbot — RubinOT Premium V3
+# DZbot RubinOT Premium V4
 
-Landing page estática, sem framework e pronta para GitHub Pages.
+V4 reconstruída com:
+- nova marca DZbot;
+- cards horizontais reais com drag/touch + CSS scroll snap;
+- screenshots reais fornecidos pelo proprietário;
+- arte fantasy/monster integrada ao layout;
+- seções responsivas para desktop e mobile;
+- WhatsApp e e-mail já configurados;
+- posicionamento RubinOT / guild ou PT / Discord-first.
 
-## Estrutura
-- `index.html`
-- `styles.css`
-- `script.js`
-- `config.js`
-- `assets/dzbot-logo.svg`
-- `assets/dzbot-shield.svg`
-- `assets/favicon.svg`
-
-## Contato
-Já configurado em `config.js`:
-- WhatsApp: +55 19 99798-8952
-- E-mail: diogofzanon@gmail.com
-
-## Publicação no repositório atual
-Extraia o conteúdo deste ZIP sobre `D:\dzbot-site` e rode:
+## Publicar
+Extraia tudo sobre `D:\dzbot-site` e execute:
 
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot RubinOT Premium V3"
+git commit -m "DZbot RubinOT Premium V4"
 git pull --rebase origin main
 git push origin main
 ```
 
-Se `git pull --rebase` apontar conflito, resolva antes do push; não use `--force`.
-
-GitHub Pages permanece:
-- Source: Deploy from a branch
-- Branch: `main`
-- Folder: `/(root)`
-
-## Posicionamento
-- RubinOT, não Tibia Global.
-- "Central de inteligência para sua guild ou PT."
-- Discord-first.
-- Sem preços públicos.
-- Orçamento personalizado.
-- Exemplos visuais de Player Tracking, War Room, Boss Intelligence, Bazaar Intelligence e Character Intelligence.
+Não use `git push --force`.
