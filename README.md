@@ -1,25 +1,18 @@
-# DZbot RubinOT Premium V6
+# DZbot RubinOT Premium V7
 
-Reconstrução completa orientada pelo mockup aprovado.
+Landing page estática premium e responsiva, reconstruída após auditoria da V6.
 
-## V6
-- logo exato enviado pelo proprietário;
-- composição desktop compacta no padrão do mockup;
-- hero com dragon art + boss alert + mapa + monitor + mobile;
-- screenshots reais do DZbot no monitor, telefone e galeria;
-- carrossel funcional com setas, auto-slide e swipe;
-- 15 módulos com ícones SVG e feedback interativo;
-- lightbox para screenshots reais;
-- animações de online, radar e boss alert;
-- versão mobile com snap/swipe e layout reorganizado;
-- WhatsApp e e-mail configurados.
+## Publicação
+Extraia sobre `D:\dzbot-site`:
 
-## Publicar
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot RubinOT Premium V6"
+git commit -m "DZbot RubinOT Premium V7"
 git pull --rebase origin main
 git push origin main
 ```
-Não use `--force`.
+
+Não use `git push --force`.
+
+O arquivo `AUDIT_V7.md` documenta os problemas corrigidos e a direção da nova arquitetura.
