@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220"><defs><linearGradient id="g"><stop stop-color="#7c3cff"/><stop offset=".55" stop-color="#b768ff"/><stop offset="1" stop-color="#57d6ff"/></linearGradient></defs><rect width="760" height="220" rx="40" fill="#080912"/><path d="M55 146 104 65h106c44 0 58 19 40 49-17 29-47 32-82 32H55zm73-50-14 23h58c13 0 20-4 24-11 4-8-1-12-15-12h-53zM245 65h160l-18 30-112 51h91l-19 31H187l19-31 111-50h-90z" fill="url(#g)"/><text x="390" y="150" fill="#f7f7fb" font-family="Arial" font-size="76" font-weight="900" font-style="italic">BOT</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 280" role="img" aria-labelledby="t d">
+<title id="t">DZbot</title><desc id="d">Marca DZbot, inteligência premium para RubinOT no Discord</desc>
+<defs>
+  <linearGradient id="a" x1="0" y1="0" x2="1" y2="1">
+    <stop stop-color="#7B5CFF"/><stop offset=".48" stop-color="#B95CFF"/><stop offset="1" stop-color="#38D7FF"/>
+  </linearGradient>
+  <linearGradient id="b" x1="0" x2="1"><stop stop-color="#F5F7FF"/><stop offset="1" stop-color="#ADB8D9"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="8" result="x"/><feMerge><feMergeNode in="x"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="1040" height="280" rx="48" fill="#070812"/>
+<g transform="translate(34 28)">
+  <path d="M26 198 92 26h124c54 0 79 20 70 59-7 30-30 47-63 55 27 8 37 24 28 51-11 35-46 57-101 57H26zm91-126-19 51h61c25 0 39-8 44-24 5-17-5-27-31-27h-55zm-34 91-17 45h73c26 0 42-8 47-23 5-15-7-22-34-22H83z" fill="url(#a)" filter="url(#glow)"/>
+  <path d="M276 26h166l-18 48-121 124h96l-18 46H206l18-47 122-125h-88z" fill="url(#a)"/>
+  <circle cx="438" cy="50" r="10" fill="#43dcff"/><circle cx="438" cy="50" r="22" fill="none" stroke="#43dcff" opacity=".22"/>
+</g>
+<text x="500" y="183" fill="url(#b)" font-family="Arial,Helvetica,sans-serif" font-size="112" font-weight="900" font-style="italic" letter-spacing="-8">BOT</text>
+<text x="510" y="226" fill="#7B86A8" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="8">RUBINOT INTELLIGENCE</text>
+</svg>
