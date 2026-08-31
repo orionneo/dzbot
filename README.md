@@ -1,9 +1,11 @@
-# DZbot V13 Elegance Expansion
+# DZbot V14 Mockup Fidelity
+
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot V13 Elegance Expansion"
+git commit -m "DZbot V14 Mockup Fidelity"
 git pull --rebase origin main
 git push origin main
 ```
-Não use `--force`.
+
+Não use `git push --force`.
