@@ -1,11 +1,9 @@
-# DZbot V12 Impact Revision
-
+# DZbot V13 Elegance Expansion
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot V12 Impact Revision"
+git commit -m "DZbot V13 Elegance Expansion"
 git pull --rebase origin main
 git push origin main
 ```
-
-Não use `git push --force`.
+Não use `--force`.

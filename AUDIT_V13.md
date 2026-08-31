@@ -1,0 +1,1 @@
+V13: 3 highlights visuais novos, 6 novos casos de uso, FAQ expandido para 15 perguntas, links diretos para módulos e base V12 preservada.

@@ -55,3 +55,4 @@
   // Lightbox
   const lb=document.getElementById("lightbox"),lbi=document.getElementById("lightboxImage");document.querySelectorAll("[data-lightbox]").forEach(b=>b.onclick=()=>{lbi.src=b.dataset.lightbox;lb.classList.add("open")});const close=()=>lb.classList.remove("open");document.getElementById("lightboxClose").onclick=close;lb.onclick=e=>{if(e.target===lb)close()};addEventListener("keydown",e=>{if(e.key==="Escape")close()});
 })();
+(()=>{document.querySelectorAll("[data-jump-module]").forEach(a=>a.addEventListener("click",()=>{const key=a.dataset.jumpModule;setTimeout(()=>{const tab=document.querySelector(`.module-tab[data-module="${key}"]`);if(tab){tab.click();tab.scrollIntoView({behavior:"smooth",block:"center"})}},350)}));})();
