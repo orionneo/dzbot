@@ -1,19 +1,19 @@
 <!doctype html><html lang="pt-BR"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#050714"><title>DZbot — Inteligência premium para RubinOT</title>
+<meta name="theme-color" content="#050714"><title>DZbot V9 Gold Master — RubinOT Intelligence</title>
 <meta name="description" content="DZbot: central de inteligência para sua guild ou PT no RubinOT, dentro do Discord. Player tracker, bosses, Bazaar, skills, mortes, rankings e alertas.">
-<link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="styles.css"></head><body>
+<link rel="icon" type="image/png" href="assets/favicon-v9.png"><link rel="stylesheet" href="styles.css"></head><body>
 <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="cursor-light"></div>
 <div class="particle-field" id="particleField" aria-hidden="true"></div>
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="site-nav">
-<a href="#inicio" class="nav-brand"><img src="assets/logo-dzbot.png" alt="DZbot RubinOT"></a>
+<a href="#inicio" class="nav-brand"><span class="logo-aura"></span><img src="assets/logo-dzbot-v9.png" alt="DZbot RubinOT"></a>
 <button class="mobile-menu" aria-label="Abrir menu"><span></span><span></span><span></span></button>
-<nav class="nav-links" id="mainNav">
+<nav class="nav-links" id="mainNav"><span class="nav-active-pill" id="navActivePill"></span>
 <a href="#inicio">Início</a><a href="#porque">Por que DZbot</a><a href="#recursos">Recursos</a><a href="#prova">Na prática</a><a href="#como">Como funciona</a><a href="#faq">FAQ</a>
 </nav>
-<div class="nav-actions"><span class="online-pill"><i></i>ONLINE</span><a class="btn btn-primary magnetic btn-nav" data-contact>Solicitar orçamento</a></div>
+<div class="nav-actions"><span class="online-pill pill-glass"><i></i>ONLINE</span><a class="btn btn-primary magnetic ripple-target btn-nav" data-contact>Solicitar orçamento</a></div>
 </header>
 
 <main id="inicio">
@@ -24,11 +24,13 @@
 <div class="kicker reveal">RUBINOT · DISCORD-FIRST · GUILD + PT</div>
 <h1 class="reveal">Transforme seu Discord em <em>inteligência de jogo.</em></h1>
 <p class="lead reveal">O DZbot acompanha players, bosses, Bazaar, skills, mortes, rankings e sinais importantes do RubinOT — e entrega tudo no ambiente onde sua guild ou PT já se comunica.</p>
-<div class="hero-actions reveal"><a class="btn btn-primary magnetic btn-xl" data-contact><svg><use href="assets/icons.svg#whatsapp"/></svg> Quero o DZbot</a><a class="btn btn-ghost magnetic btn-xl" href="#prova">Ver o bot funcionando <svg><use href="assets/icons.svg#arrow"/></svg></a></div>
+<div class="hero-actions reveal"><a class="btn btn-primary magnetic ripple-target btn-xl" data-contact><svg><use href="assets/icons.svg#whatsapp"/></svg> Quero o DZbot</a><a class="btn btn-ghost magnetic ripple-target btn-xl" href="#prova">Ver o bot funcionando <svg><use href="assets/icons.svg#arrow"/></svg></a></div>
 <div class="hero-trust reveal"><span><b>24/7</b><small>monitoramento</small></span><span><b>100%</b><small>Discord-first</small></span><span><b>RubinOT</b><small>foco do produto</small></span><span><b>Custom</b><small>por guild/PT</small></span></div>
 </div>
 
 <div class="hero-showcase reveal" data-tilt-root>
+<div class="hud-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="hero-scan-beam" aria-hidden="true"></div>
 <div class="orbit-ring orbit-one"></div><div class="orbit-ring orbit-two"></div>
 <div class="data-node node-a"><i></i><span>TRACKING</span></div>
 <div class="data-node node-b"><i></i><span>INTEL</span></div>
@@ -171,9 +173,9 @@
 <div class="wrap">
 <div class="section-head split reveal"><div><span class="section-kicker">TRÊS CAMADAS DE INTELIGÊNCIA</span><h2>Não é só alerta.<br><em>É contexto para agir.</em></h2></div><p>A apresentação foi reorganizada por benefício: saber o que mudou, entender por que importa e decidir o que fazer.</p></div>
 <div class="intelligence-grid">
-<article class="intel-card reveal"><img src="assets/art/knight.webp"><div><span>01 · PLAYER</span><h3>Quem está online?</h3><p>Tracking, sessão, PT online e sinalização de friend/enemy/watch.</p><a href="#recursos" data-open-feature="player">Explorar Player Tracker →</a></div></article>
-<article class="intel-card reveal"><img src="assets/art/boss.webp"><div><span>02 · BOSS</span><h3>Hoje vale ficar de olho?</h3><p>Radar com nível de atenção e contexto histórico sem prometer certeza falsa.</p><a href="#recursos" data-open-feature="boss">Explorar Boss Intelligence →</a></div></article>
-<article class="intel-card reveal"><img src="assets/art/bazaar.webp"><div><span>03 · BAZAAR</span><h3>Vale monitorar?</h3><p>Top, filtros e watch para reduzir ruído e destacar oportunidade.</p><a href="#recursos" data-open-feature="bazaar">Explorar Bazaar →</a></div></article>
+<article class="intel-card intel-player reveal" data-holo-card><div class="fantasy-frame"></div><img src="assets/art/knight.webp"><span class="float-tag ft-one">● AUTO TARGET ACTIVE</span><span class="float-tag ft-two">PT SIGNAL LIVE</span><div><span>01 · PLAYER</span><h3>Quem está online?</h3><p>Tracking, sessão, PT online e sinalização de friend/enemy/watch.</p><a href="#recursos" data-open-feature="player">Explorar Player Tracker →</a></div></article>
+<article class="intel-card intel-boss reveal" data-holo-card><div class="fantasy-frame"></div><img src="assets/art/boss.webp"><span class="float-tag ft-one gold">◆ BOSS SPAWNS LIVE</span><span class="float-tag ft-two red">CRITICAL WINDOW</span><div><span>02 · BOSS</span><h3>Hoje vale ficar de olho?</h3><p>Radar com nível de atenção e contexto histórico sem prometer certeza falsa.</p><a href="#recursos" data-open-feature="boss">Explorar Boss Intelligence →</a></div></article>
+<article class="intel-card intel-bazaar reveal" data-holo-card><div class="fantasy-frame"></div><img src="assets/art/bazaar.webp"><span class="float-tag ft-one cyan">◆ BAZAAR WATCH</span><span class="float-tag ft-two gold">INTEREST SCORE</span><div><span>03 · BAZAAR</span><h3>Vale monitorar?</h3><p>Top, filtros e watch para reduzir ruído e destacar oportunidade.</p><a href="#recursos" data-open-feature="bazaar">Explorar Bazaar →</a></div></article>
 </div>
 </div></section>
 
@@ -189,15 +191,23 @@
 </div></section>
 
 <section id="faq" class="section faq-section"><div class="wrap faq-wrap">
-<div class="section-head reveal"><span class="section-kicker">FAQ</span><h2>Antes de chamar,<br><em>tire as dúvidas principais.</em></h2></div><div class="faq-list"><details class="faq-item reveal"><summary>O DZbot é para Tibia Global?<span>+</span></summary><p>Não. Esta experiência foi desenhada para RubinOT e para o fluxo de informação da sua guild ou PT dentro do Discord.</p></details><details class="faq-item reveal"><summary>Preciso sair do Discord para usar?<span>+</span></summary><p>O objetivo é justamente reduzir troca de tela. Alertas, resumos e comandos ficam no Discord; links externos aparecem quando realmente agregam valor, como abrir um leilão.</p></details><details class="faq-item reveal"><summary>Posso escolher só os módulos que preciso?<span>+</span></summary><p>Sim. A implantação é composta de acordo com o uso da guild ou PT, sem uma tabela pública fixa.</p></details><details class="faq-item reveal"><summary>O site mostra dados reais do bot?<span>+</span></summary><p>Sim. A seção de prova usa screenshots reais fornecidos pelo proprietário do DZbot, com nomes sensíveis ocultados.</p></details><details class="faq-item reveal"><summary>Funciona no celular?<span>+</span></summary><p>Sim. A V7 foi reconstruída com navegação mobile, cards por toque, galerias responsivas e CTAs próprios para telas menores.</p></details></div>
-</div></section>
+<div class="section-head reveal"><span class="section-kicker">FAQ</span><h2>Antes de chamar,<br><em>tire as dúvidas principais.</em></h2><p>Abra uma pergunta para ver a resposta. A experiência agora reage com luz, altura e movimento suaves.</p></div>
+<div class="faq-list">
+<div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>O DZbot é para Tibia Global?</span><i>+</i></button><div class="faq-answer"><div><p>Não. Esta experiência foi desenhada para RubinOT e para o fluxo de informação da sua guild ou PT dentro do Discord.</p></div></div></div>
+<div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Preciso sair do Discord para usar?</span><i>+</i></button><div class="faq-answer"><div><p>O objetivo é justamente reduzir troca de tela. Alertas, resumos e comandos ficam no Discord; links externos aparecem quando realmente agregam valor, como abrir um leilão.</p></div></div></div>
+<div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Posso escolher só os módulos que preciso?</span><i>+</i></button><div class="faq-answer"><div><p>Sim. A implantação é composta de acordo com o uso da guild ou PT, sem uma tabela pública fixa.</p></div></div></div>
+<div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>O site mostra dados reais do bot?</span><i>+</i></button><div class="faq-answer"><div><p>Sim. A seção de prova usa screenshots reais fornecidos pelo proprietário do DZbot, com nomes sensíveis ocultados.</p></div></div></div>
+<div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Funciona no celular?</span><i>+</i></button><div class="faq-answer"><div><p>Sim. No mobile, tilts pesados são desativados, carrosséis recebem swipe e as animações são reduzidas para manter fluidez e bateria.</p></div></div></div>
+</div></div></section>
 
 <section id="contato" class="section cta-section">
-<div class="cta-bg"></div><div class="wrap cta-wrap reveal"><img src="assets/logo-dzbot.png" alt="DZbot" class="cta-logo"><span class="section-kicker">PRONTO PARA SUBIR O NÍVEL?</span><h2>Faça seu Discord trabalhar<br><em>pela sua guild ou PT.</em></h2><p>Conte como você joga. A implantação e a composição são personalizadas; não há tabela pública fixa.</p><div class="hero-actions"><a class="btn btn-primary magnetic btn-xl" data-contact><svg><use href="assets/icons.svg#whatsapp"/></svg> Falar no WhatsApp</a><a class="btn btn-ghost magnetic btn-xl" href="mailto:diogofzanon@gmail.com">Enviar e-mail</a></div><small>RubinOT · Discord-first · implantação assistida</small></div>
+<div class="portal-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="portal-sparks" id="portalSparks" aria-hidden="true"></div>
+<div class="cta-bg"></div><div class="wrap cta-wrap reveal"><img src="assets/logo-dzbot-v9.png" alt="DZbot" class="cta-logo"><span class="section-kicker">PRONTO PARA SUBIR O NÍVEL?</span><h2>Faça seu Discord trabalhar<br><em>pela sua guild ou PT.</em></h2><p>Conte como você joga. A implantação e a composição são personalizadas; não há tabela pública fixa.</p><div class="hero-actions"><a class="btn btn-primary magnetic ripple-target btn-xl" data-contact><svg><use href="assets/icons.svg#whatsapp"/></svg> Falar no WhatsApp</a><a class="btn btn-ghost magnetic ripple-target btn-xl" href="mailto:diogofzanon@gmail.com">Enviar e-mail</a></div><small>RubinOT · Discord-first · implantação assistida</small></div>
 </section>
 </main>
 
-<footer><div class="wrap footer-inner"><img src="assets/logo-dzbot.png" alt="DZbot"><div><b>RubinOT intelligence. Discord first.</b><small>© 2026 DZbot · Projeto independente</small></div><nav><a href="#inicio">Início</a><a href="#recursos">Recursos</a><a href="#prova">Na prática</a><a href="#faq">FAQ</a></nav><span><i></i>ONLINE</span></div></footer>
+<footer><div class="wrap footer-inner"><img src="assets/logo-dzbot-v9.png" alt="DZbot"><div><b>RubinOT intelligence. Discord first.</b><small>© 2026 DZbot · Projeto independente</small></div><nav><a href="#inicio">Início</a><a href="#recursos">Recursos</a><a href="#prova">Na prática</a><a href="#faq">FAQ</a></nav><span><i></i>ONLINE</span></div></footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="Fechar">×</button><div class="lightbox-inner"><img alt="Screenshot DZbot"><div><b id="lightboxLabel">DZbot</b><span>Screenshot real</span></div></div></div>
 <script src="config.js"></script><script src="script.js"></script></body></html>

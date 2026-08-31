@@ -194,3 +194,150 @@
     [...group.children].forEach((el,i)=>el.style.transitionDelay=(i%6)*55+"ms");
   });
 })();
+
+
+(() => {
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = matchMedia("(pointer:fine)").matches;
+  const root = document.documentElement;
+
+  // Ambient gradients follow pointer and scroll with CSS variables.
+  if(finePointer && !reduceMotion){
+    addEventListener("pointermove", e => {
+      root.style.setProperty("--mx", e.clientX + "px");
+      root.style.setProperty("--my", e.clientY + "px");
+    }, {passive:true});
+  }
+  addEventListener("scroll", () => root.style.setProperty("--scroll-y", Math.round(scrollY)), {passive:true});
+
+  // Sliding active nav pill.
+  const nav = document.getElementById("mainNav");
+  const pill = document.getElementById("navActivePill");
+  const navItems = nav ? [...nav.querySelectorAll('a[href^="#"]')] : [];
+
+  function movePillTo(el, immediate=false){
+    if(!pill || !el || innerWidth <= 720) return;
+    const nr = nav.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    if(immediate) pill.style.transition = "none";
+    pill.style.width = r.width + "px";
+    pill.style.transform = `translateX(${r.left - nr.left - 4}px)`;
+    if(immediate) requestAnimationFrame(()=>pill.style.transition="");
+  }
+
+  function activeNavItem(){
+    return navItems.find(a=>a.classList.contains("active")) || navItems[0];
+  }
+  requestAnimationFrame(()=>movePillTo(activeNavItem(), true));
+  addEventListener("resize", ()=>movePillTo(activeNavItem(), true));
+
+  const navWatch = new MutationObserver(()=>{
+    const current=activeNavItem();
+    if(current) movePillTo(current);
+  });
+  navItems.forEach(a=>navWatch.observe(a,{attributes:true,attributeFilter:["class"]}));
+  navItems.forEach(a=>{
+    a.addEventListener("mouseenter",()=>movePillTo(a));
+    a.addEventListener("mouseleave",()=>movePillTo(activeNavItem()));
+  });
+
+  // Ripple / light burst on primary interactive controls.
+  document.querySelectorAll(".ripple-target").forEach(btn=>{
+    btn.addEventListener("click", e=>{
+      const r=btn.getBoundingClientRect();
+      const burst=document.createElement("i");
+      burst.className="click-burst";
+      burst.style.left=(e.clientX-r.left)+"px";
+      burst.style.top=(e.clientY-r.top)+"px";
+      btn.appendChild(burst);
+      setTimeout(()=>burst.remove(),700);
+    });
+  });
+
+  // Advanced 3D holographic tilt with requestAnimationFrame.
+  if(finePointer && !reduceMotion){
+    const cards=[...document.querySelectorAll(".feature-card,[data-holo-card],.process-card")];
+    cards.forEach(card=>{
+      let raf=0;
+      card.addEventListener("pointermove", e=>{
+        if(raf) cancelAnimationFrame(raf);
+        raf=requestAnimationFrame(()=>{
+          const r=card.getBoundingClientRect();
+          const px=(e.clientX-r.left)/r.width;
+          const py=(e.clientY-r.top)/r.height;
+          const ry=(px-.5)*8;
+          const rx=(py-.5)*-7;
+          card.style.transform=`perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+          card.style.setProperty("--card-x",(px*100)+"%");
+          card.style.setProperty("--card-y",(py*100)+"%");
+        });
+      });
+      card.addEventListener("pointerleave",()=>{
+        if(raf) cancelAnimationFrame(raf);
+        card.style.transform="";
+      });
+    });
+  }
+
+  // Stronger magnetic CTAs: attraction area follows pointer smoothly.
+  if(finePointer && !reduceMotion){
+    document.querySelectorAll(".magnetic").forEach(btn=>{
+      let raf=0;
+      btn.addEventListener("pointermove", e=>{
+        if(raf) cancelAnimationFrame(raf);
+        raf=requestAnimationFrame(()=>{
+          const r=btn.getBoundingClientRect();
+          const dx=e.clientX-(r.left+r.width/2);
+          const dy=e.clientY-(r.top+r.height/2);
+          btn.style.transform=`translate3d(${dx*.14}px,${dy*.16}px,0) scale(1.018)`;
+        });
+      });
+      btn.addEventListener("pointerleave",()=>{
+        if(raf) cancelAnimationFrame(raf);
+        btn.style.transform="";
+      });
+    });
+  }
+
+  // Feature stage transition when a feature card is clicked.
+  const stage=document.getElementById("featureStage");
+  document.querySelectorAll(".feature-card").forEach(card=>{
+    card.addEventListener("click",()=>{
+      stage?.classList.add("is-switching");
+      setTimeout(()=>stage?.classList.remove("is-switching"),210);
+    });
+  });
+
+  // Animated FAQ accordion, one item open at a time.
+  const faqItems=[...document.querySelectorAll(".faq-item")];
+  faqItems.forEach(item=>{
+    const q=item.querySelector(".faq-question");
+    q?.addEventListener("click",()=>{
+      const opening=!item.classList.contains("open");
+      faqItems.forEach(other=>{
+        if(other!==item){
+          other.classList.remove("open");
+          other.querySelector(".faq-question")?.setAttribute("aria-expanded","false");
+        }
+      });
+      item.classList.toggle("open",opening);
+      q.setAttribute("aria-expanded",opening?"true":"false");
+    });
+  });
+
+  // CTA portal particles.
+  const sparks=document.getElementById("portalSparks");
+  if(sparks && !reduceMotion){
+    for(let i=0;i<32;i++){
+      const s=document.createElement("i");
+      s.style.left=(12+Math.random()*76)+"%";
+      s.style.top=(18+Math.random()*66)+"%";
+      s.style.animationDelay=(-Math.random()*6)+"s";
+      s.style.animationDuration=(4+Math.random()*5)+"s";
+      s.style.opacity=(.15+Math.random()*.55);
+      sparks.appendChild(s);
+    }
+  }
+
+  // Keyboard: Enter/Space on cards still works naturally because cards are buttons.
+})();

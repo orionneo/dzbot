@@ -1,21 +1,28 @@
-# DZbot RubinOT Premium V8
+# DZbot V9 Gold Master
 
-V8 = V7 + sistema de motion/interação premium.
+Versão Gold Master do site comercial DZbot para RubinOT.
 
-Publicação:
+## Publicação
+Extraia o conteúdo sobre `D:\dzbot-site`:
+
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot RubinOT Premium V8"
+git commit -m "DZbot V9 Gold Master"
 git pull --rebase origin main
 git push origin main
 ```
 
-Arquivos principais:
-- index.html
-- styles.css
-- script.js
-- config.js
-- AUDIT_V8.md
-
 Não use `git push --force`.
+
+## Logo
+`assets/logo-dzbot-v9.png` é derivado diretamente da imagem oficial fornecida para a V9.
+
+## Stack
+GitHub Pages estático:
+- HTML
+- CSS avançado
+- JavaScript vanilla
+- assets 100% locais
+
+Sem dependências/CDNs externas.
