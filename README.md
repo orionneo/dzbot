@@ -1,12 +1,10 @@
-# DZbot V10 Revision
-
-Site estático pronto para GitHub Pages.
+# DZbot V11 — Conversion Experience
 
 ## Publicar
 ```powershell
 cd D:\dzbot-site
 git add .
-git commit -m "DZbot V10 Revision"
+git commit -m "DZbot V11 Conversion Experience"
 git pull --rebase origin main
 git push origin main
 ```
