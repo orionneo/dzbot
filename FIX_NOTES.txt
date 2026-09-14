@@ -1,0 +1,18 @@
+DZBOT SITE REPAIR — V15 VISUAL RESTORED + ISOLATED PLAYER GUIDE
+
+What was done:
+- Restored index/script/styles from the last known-good visual baseline (commit d71c477 / V15).
+- Kept script.js and styles.css byte-identical to the working V15 baseline.
+- Added the Player Guide as an isolated section using only guide.css + guide.js.
+- Added only one small navigation link ("Guia") to expose the new section.
+- Excluded admin/maintenance commands from the player guide.
+- Included Bazaar, PvP, Dashboard, Player/Character Intelligence, Guild/Radar,
+  Rankings, PT/Team/Respawn, Boss, Events, Game Database, Imbuements, Social,
+  Castle/Event automations and playbooks.
+
+Safety hashes:
+script.js SHA256: 62e96de5089806b58d2b09a51999512ecdf7b9222430deeda70d8bc590902658
+styles.css SHA256: f460f374494080a47ec29d2f9c50fa1099ebab393a14a9b58fb1017f941fa7c6
+
+Copy all files over D:\dzbot-site, but DO NOT delete D:\dzbot-site\.git
+Then run REPAIR_AND_DEPLOY.ps1.
