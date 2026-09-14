@@ -2,135 +2,1040 @@
   const root = document.getElementById('guia');
   if (!root) return;
 
+  // SOURCE OF TRUTH: Raspberry production audit 2026-09-14.
+  // Admin/restricted commands intentionally excluded from the player guide.
   const commands = [
-    {c:'/dashboard',cat:'Começar',t:'Guild Command Center',d:'Abre o painel visual do DZbot com botões para Party, Hunts, Bosses, Intelligence, Guild & Radar, Rankings, Game Database e Social.',when:'Use quando você não quer decorar comandos e prefere navegar visualmente pelas áreas do bot.',ex:'/dashboard'},
-    {c:'/help',cat:'Começar',t:'Ajuda por categorias',d:'Mostra os recursos disponíveis e ajuda a descobrir o próximo comando.',when:'Primeiro contato com o bot ou quando você sabe o que quer fazer, mas não lembra o comando.',ex:'/help'},
-    {c:'/linkchar',cat:'Player',t:'Vincule seu personagem ao Discord',d:'Liga seu personagem do Tibia ao seu usuário do Discord para que recursos pessoais saibam quem é você.',when:'Faça uma vez no início. Depois /eu, /dz dna e outros recursos pessoais ficam muito mais úteis.',ex:'/linkchar character:Gandalf Power Gray'},
-    {c:'/eu',cat:'Player',t:'Seu DZ ID',d:'Visão pessoal consolidada de DNA, evolução e conquistas observadas.',when:'Para acompanhar seu próprio personagem sem precisar informar o nome toda vez.',ex:'/eu'},
-    {c:'/dz agora',cat:'Player',t:'O que está acontecendo agora',d:'Leitura tática do momento com sinais relevantes da guild/PT.',when:'Quando você entra no Discord e quer entender rapidamente o cenário atual.',ex:'/dz agora'},
-    {c:'/dz pt',cat:'PT',t:'Sugestão de PT',d:'Usa o contexto disponível para ajudar a formar as melhores parties com quem está disponível.',when:'Antes de uma hunt, boss ou atividade em grupo.',ex:'/dz pt'},
-    {c:'/dz daily',cat:'Player',t:'Resumo premium do dia',d:'Consolida atividade e evolução observadas em um resumo do dia.',when:'Para revisar o que aconteceu sem navegar por várias telas.',ex:'/dz daily'},
-    {c:'/dz dna',cat:'Player',t:'Player DNA completo',d:'Dossiê do personagem com evolução, skills e contexto observado.',when:'Para conhecer seu próprio perfil ou analisar outro personagem.',ex:'/dz dna character:Gandalf Power Gray'},
-    {c:'/dz conquistas',cat:'Player',t:'Conquistas observadas',d:'Mostra conquistas e marcos que o DZbot conseguiu observar.',when:'Para acompanhar evolução além de level e skill.',ex:'/dz conquistas character:Gandalf Power Gray'},
-    {c:'/playerinfo',cat:'Player',t:'Player Info rápido',d:'Abre a ficha operacional do personagem para consultar status, level, vocação, guild e contexto disponível.',when:'Quando você quer uma consulta rápida de um personagem diretamente pelo comando de ficha.',ex:'/playerinfo character:Gandalf Power Gray'},
-    {c:'/player info',cat:'Player',t:'Ficha completa do player',d:'Consulta perfil, status e histórico do personagem acompanhado pelo DZbot.',when:'Quando você quer uma visão detalhada de um personagem monitorado.',ex:'/player info character:Gandalf Power Gray'},
-    {c:'/player online',cat:'Player',t:'Status online do player',d:'Mostra o estado atual do personagem e contexto de presença.',when:'Para checar rapidamente se alguém está online.',ex:'/player online character:Gandalf Power Gray'},
-    {c:'/player history',cat:'Player',t:'Histórico do personagem',d:'Consulta histórico observado de atividade do player.',when:'Para entender padrão de presença e acontecimentos recentes.',ex:'/player history character:Gandalf Power Gray'},
-    {c:'/charintel',cat:'Player',t:'Character Intelligence',d:'Abre a inteligência de personagem diretamente com autocomplete.',when:'Quando você quer análise rápida de um char sem passar por menus.',ex:'/charintel character:Gandalf Power Gray'},
-    {c:'/watchme add',cat:'Player',t:'Alerta pessoal de login',d:'Pede ao bot para avisar você quando um personagem específico entrar.',when:'Para acompanhar amigo, alvo ou alguém importante sem vigiar a lista online.',ex:'/watchme add character:Nome do Player'},
-    {c:'/watchme list',cat:'Player',t:'Seus alertas pessoais',d:'Lista os personagens que você pediu para acompanhar pessoalmente.',when:'Para revisar ou organizar seus watches pessoais.',ex:'/watchme list'},
-
-    {c:'/friend add',cat:'Guild & Radar',t:'Cadastrar aliado',d:'Classifica um personagem como FRIEND para alimentar radar, presença, evolução e outras leituras.',when:'Cadastre membros reais da sua PT/guild para o DZbot ganhar contexto.',ex:'/friend add character:Nome do Player'},
-    {c:'/friend online',cat:'Guild & Radar',t:'Friends online',d:'Mostra quais FRIENDs estão online agora.',when:'Ótimo para montar PT rapidamente.',ex:'/friend online'},
-    {c:'/friend history',cat:'Guild & Radar',t:'Histórico de FRIEND',d:'Mostra atividade observada de aliados.',when:'Para entender presença e comportamento recente da PT.',ex:'/friend history character:Nome do Player'},
-    {c:'/enemy add',cat:'Guild & Radar',t:'Cadastrar hostil',d:'Classifica um personagem como ENEMY e passa a tratá-lo como alvo operacional.',when:'Para hostis que precisam aparecer com destaque no radar.',ex:'/enemy add character:Nome do Player'},
-    {c:'/enemy online',cat:'Guild & Radar',t:'Hostis online',d:'Mostra inimigos monitorados que estão online agora.',when:'Antes de sair para hunt ou quando existe risco de conflito.',ex:'/enemy online'},
-    {c:'/watch add',cat:'Guild & Radar',t:'Watch neutro',d:'Acompanha um personagem sem classificá-lo necessariamente como friend ou enemy.',when:'Para players de interesse, scouts ou alvos que você quer observar.',ex:'/watch add character:Nome do Player'},
-    {c:'/watch history',cat:'Guild & Radar',t:'Histórico da Watch List',d:'Mostra o histórico observado de um personagem em WATCH.',when:'Para investigar padrão de atividade.',ex:'/watch history character:Nome do Player'},
-    {c:'/online',cat:'Guild & Radar',t:'Radar de jogadores online',d:'Visão rápida de presença dos personagens relevantes para a guild/PT.',when:'Um dos melhores comandos para iniciar uma sessão de jogo.',ex:'/online'},
-    {c:'/quemtaon',cat:'Guild & Radar',t:'Quem está on?',d:'Resumo rápido e social de quem está online.',when:'Quando você quer uma resposta curta antes de chamar a galera.',ex:'/quemtaon'},
-    {c:'/track add',cat:'Guild & Radar',t:'Radar individual',d:'Adiciona um personagem ao radar e permite controlar alertas.',when:'Para acompanhar alguém de forma mais focada.',ex:'/track add character:Nome do Player'},
-    {c:'/track info',cat:'Guild & Radar',t:'Informações do tracking',d:'Mostra o estado do acompanhamento de um personagem.',when:'Para revisar como um alvo está sendo acompanhado.',ex:'/track info character:Nome do Player'},
-    {c:'/radar timeline',cat:'Guild & Radar',t:'Timeline do radar',d:'Lista sinais recentes observados pelo radar.',when:'Use depois de ficar um tempo fora para entender o que mudou.',ex:'/radar timeline'},
-    {c:'/guildwatch add',cat:'Guild & Radar',t:'Monitorar uma guild',d:'Adiciona guild para acompanhamento com classificação Ally, Neutral ou Enemy.',when:'Para acompanhar guild rival, aliada ou de interesse.',ex:'/guildwatch add guild:Nome da Guild'},
-    {c:'/guildwatch status',cat:'Guild & Radar',t:'Status da guild monitorada',d:'Mostra a visão consolidada de uma guild acompanhada.',when:'Para checar presença e contexto coletivo.',ex:'/guildwatch status guild:Nome da Guild'},
-    {c:'/guildwatch refresh',cat:'Guild & Radar',t:'Atualizar membros públicos',d:'Atualiza a descoberta pública de membros da guild monitorada.',when:'Quando a composição da guild mudou ou a lista parece desatualizada.',ex:'/guildwatch refresh guild:Nome da Guild'},
-    {c:'/masslog',cat:'PvP & War',t:'Sinais de masslog',d:'Mostra os últimos sinais de entrada/saída coletiva relevantes para operação.',when:'Útil para perceber mobilização de guild ou movimento anormal.',ex:'/masslog'},
-    {c:'/war',cat:'PvP & War',t:'War Room',d:'Visão operacional voltada a conflito, presença e sinais de Malveria.',when:'Durante guerra, perseguição ou períodos de tensão.',ex:'/war'},
-    {c:'/pvp',cat:'PvP & War',t:'PvP Intelligence',d:'Consulta inteligência de mortes PvP coletada pelo DZbot, com contexto de jogadores monitorados.',when:'Para entender quem matou quem, movimentação hostil e sinais recentes de PvP.',ex:'/pvp'},
-    {c:'/bans',cat:'PvP & War',t:'Bans Intelligence',d:'Consulta bans ativos e histórico observado; pode ser filtrado por personagem.',when:'Para checar situação disciplinar observada de um player.',ex:'/bans player:Nome do Player'},
-
-    {c:'/ranking',cat:'Rankings',t:'Rankings completos',d:'Compara evolução, EXP, online, mortes, sessão e skills — inclusive PT e filtros por vocação.',when:'Para entender quem está evoluindo e comparar players com contexto real.',ex:'/ranking'},
-    {c:'/ranking voc:RP',cat:'Rankings',t:'Ranking de Royal Paladins',d:'Mostra posições observadas de RP em skills relevantes sem inventar posição quando o char está fora da faixa coletada.',when:'Para comparar Distance, Magic e outros indicadores de RP.',ex:'/ranking voc:RP'},
-    {c:'/ranking voc:EK',cat:'Rankings',t:'Ranking de Elite Knights',d:'Contexto competitivo de EK com melee, shielding e magic conforme dados disponíveis.',when:'Para comparar evolução de knights.',ex:'/ranking voc:EK'},
-    {c:'/ranking voc:EM',cat:'Rankings',t:'Ranking de Exalted Monks',d:'Contexto competitivo de EM nas skills observadas.',when:'Para comparar monks dentro da base coletada.',ex:'/ranking voc:EM'},
-    {c:'/ranking voc:MAGE',cat:'Rankings',t:'Ranking de Mages',d:'Agrupa contexto de vocações mágicas com foco nos indicadores disponíveis.',when:'Para comparar ED/MS em progressão e magic.',ex:'/ranking voc:MAGE'},
-
-    {c:'/pt',cat:'PT',t:'Painel da party',d:'Visão consolidada de party e composição.',when:'Para montar grupo e enxergar disponibilidade da PT.',ex:'/pt'},
-    {c:'/team create',cat:'PT',t:'Criar evento/PT',d:'Cria uma hunt, quest, boss ou evento com código, título, horário e limite de jogadores.',when:'Quando você quer organizar compromisso de grupo dentro do Discord.',ex:'/team create code:FERU title:Ferumbras when:20:30 max:15'},
-    {c:'/team join',cat:'PT',t:'Entrar no evento',d:'Entra em um Team Event informando opcionalmente personagem e vocação.',when:'Para confirmar sua vaga e ajudar o organizador a enxergar composição.',ex:'/team join code:FERU character:Gandalf Power Gray vocation:RP'},
-    {c:'/team list',cat:'PT',t:'Eventos abertos',d:'Lista os eventos/PTs atualmente abertos.',when:'Para descobrir o que a guild está organizando.',ex:'/team list'},
-    {c:'/poke',cat:'PT',t:'Chamar a PT',d:'Dispara uma chamada rápida para todos os FRIENDs vinculados ou apenas os online.',when:'Boss, hunt, castelo ou ajuda urgente.',ex:'/poke scope:online message:Bora boss agora'},
-    {c:'/share',cat:'PT',t:'Faixa de Shared XP',d:'Calcula a faixa aproximada de levels compatíveis com shared experience.',when:'Antes de montar uma hunt para evitar incompatibilidade de level.',ex:'/share level:849'},
-    {c:'/respawn bind',cat:'PT',t:'Definir seu char padrão',d:'Vincula seu personagem padrão ao Respawn Manager.',when:'Faça uma vez para agilizar claims e filas.',ex:'/respawn bind'},
-    {c:'/respawn list',cat:'PT',t:'Ocupação dos respawns',d:'Lista os respawns cadastrados e sua situação.',when:'Antes de ir para uma hunt concorrida.',ex:'/respawn list'},
-    {c:'/respawn claim',cat:'PT',t:'Assumir respawn',d:'Reserva um respawn por um período conforme regras configuradas.',when:'Quando sua PT vai começar uma hunt.',ex:'/respawn claim'},
-    {c:'/respawn queue',cat:'PT',t:'Entrar na fila',d:'Coloca você na fila de um respawn ocupado.',when:'Para organizar disputa sem discussão manual.',ex:'/respawn queue'},
-    {c:'/respawn release',cat:'PT',t:'Liberar respawn',d:'Libera a reserva e permite seguir a fila.',when:'Ao terminar a hunt.',ex:'/respawn release'},
-    {c:'/respawn info',cat:'PT',t:'Detalhe e fila do respawn',d:'Mostra ocupação, tempo e fila de um respawn.',when:'Para saber quem está usando e quem é o próximo.',ex:'/respawn info'},
-
-    {c:'/boss',cat:'Bosses',t:'Boss Intelligence',d:'Abre o radar estratégico de bosses com estados, confiança e contexto observado.',when:'Para priorizar bosses e entender onde vale prestar atenção.',ex:'/boss'},
-    {c:'/boss name:upcoming',cat:'Bosses',t:'Bosses em janela',d:'Mostra bosses que merecem atenção pela janela/inteligência disponível.',when:'Antes de organizar checks de boss.',ex:'/boss name:upcoming'},
-    {c:'/boss name:hot',cat:'Bosses',t:'Bosses com sinal forte',d:'Mostra sinais mais quentes sem transformar falta de evidência em certeza.',when:'Para focar esforço do time onde há maior sinal.',ex:'/boss name:hot'},
-    {c:'/boss name:history Ferumbras',cat:'Bosses',t:'Histórico de boss',d:'Consulta contexto histórico observado para um boss específico.',when:'Para entender frequência e histórico antes de tomar decisão.',ex:'/boss name:"history Ferumbras"'},
-    {c:'/boss monitor:RAGING_MAGE',cat:'Bosses',t:'Raging Mage / Yielothax',d:'Acompanha o World Change suportado com status e contribuição pessoal informada.',when:'Para monitorar progresso do Raging Mage/Yielothax.',ex:'/boss monitor:RAGING_MAGE monitor_mode:status'},
-
-    {c:'/bazar acao:agora',cat:'Bazaar',t:'Top 10 do Bazaar',d:'Consulta o Bazaar Intelligence de Malveria e retorna oportunidades conforme filtros.',when:'Para procurar personagem por vocação, level e teto de Rubini Coins.',ex:'/bazar acao:agora vocacao:RP nivel_min:700 valor_max:120000'},
-    {c:'/bazar acao:monitor',cat:'Bazaar',t:'Criar monitor de oportunidade',d:'Cria um watch de Bazaar com filtros e janela de alerta antes do fechamento.',when:'Quando você quer que a oportunidade venha até você, sem ficar atualizando o site.',ex:'/bazar acao:monitor vocacao:RP nivel_min:700 valor_max:120000 alerta_min:60'},
-    {c:'/bazar acao:meus',cat:'Bazaar',t:'Seus monitores do Bazaar',d:'Lista os watches que você já configurou.',when:'Para revisar seus filtros ativos.',ex:'/bazar acao:meus'},
-    {c:'/bazar acao:detalhe',cat:'Bazaar',t:'Detalhe do leilão',d:'Abre o detalhe de um leilão específico pelo ID observado.',when:'Quando um resultado chamou sua atenção e você quer examinar melhor.',ex:'/bazar acao:detalhe leilao:12345'},
-
-    {c:'/events',cat:'Eventos',t:'Eventos confirmados',d:'Mostra eventos conhecidos/confirmados pelo DZbot.',when:'Para ver o que está marcado sem procurar mensagens antigas.',ex:'/events'},
-    {c:'/calendar',cat:'Eventos',t:'Calendário da guild',d:'Exibe o calendário de eventos materializados pelo DZbot.',when:'Para planejar a semana e lembrar Castle, eventos fixos e outras ocorrências.',ex:'/calendar'},
-    {c:'/boosted',cat:'Eventos',t:'Boosted confirmado',d:'Consulta o boosted registrado/confirmado na camada de inteligência.',when:'Para uma checagem rápida antes de decidir a hunt.',ex:'/boosted'},
-    {c:'/poll',cat:'Eventos',t:'Enquete rápida',d:'Cria votação com 2 a 4 opções usando botões.',when:'Escolha de hunt, horário, boss, atividade ou qualquer decisão de grupo.',ex:'/poll question:"Onde vamos?" option1:Ingol option2:DT Seal option3:Dragons'},
-    {c:'/lottery',cat:'Eventos',t:'Sorteio',d:'Sorteia entre nomes informados ou membros disponíveis em cache.',when:'Para loot, prêmio, ordem ou brincadeira interna.',ex:'/lottery entries:Diogo,Victor,Joao'},
-
-    {c:'/quest info',cat:'Game Database',t:'Consultar quest',d:'Consulta uma quest na base local.',when:'Para descobrir requisitos e contexto sem sair do Discord.',ex:'/quest info name:"Nome da Quest"'},
-    {c:'/quest start',cat:'Game Database',t:'Guia passo a passo',d:'Inicia a navegação guiada da quest com next/previous/reset.',when:'Quando você quer seguir a quest diretamente pelo Discord.',ex:'/quest start name:"Nome da Quest"'},
-    {c:'/access',cat:'Game Database',t:'Consultar acesso',d:'Pesquisa acessos cadastrados na base de conhecimento.',when:'Para descobrir pré-requisitos de áreas e conteúdos.',ex:'/access name:"Nome do acesso"'},
-    {c:'/creature',cat:'Game Database',t:'Consultar criatura',d:'Pesquisa uma criatura na base local.',when:'Para informações rápidas de monstros.',ex:'/creature name:Vexclaw'},
-    {c:'/loot',cat:'Game Database',t:'Consultar loot',d:'Pesquisa loot na base local.',when:'Para hunt, avaliação de drop e planejamento.',ex:'/loot name:"Nome do item"'},
-    {c:'/rare',cat:'Game Database',t:'Itens raros',d:'Consulta raridades indexadas pelo DZbot.',when:'Quando você quer informação de conteúdo raro.',ex:'/rare name:"Nome"'},
-    {c:'/drops',cat:'Game Database',t:'Pesquisar drops',d:'Consulta a relação de drops cadastrados.',when:'Para descobrir onde determinado item aparece na base.',ex:'/drops name:"Nome"'},
-    {c:'/item',cat:'Game Database',t:'Consultar item',d:'Busca informações de item na base local.',when:'Para checar item sem trocar de janela.',ex:'/item name:"Nome do item"'},
-    {c:'/npc',cat:'Game Database',t:'Consultar NPC',d:'Pesquisa NPCs na base de conhecimento.',when:'Para localização/contexto cadastrado de NPC.',ex:'/npc name:Rashid'},
-    {c:'/hunt',cat:'Game Database',t:'Consultar hunt',d:'Pesquisa hunts cadastradas e contexto disponível.',when:'Para escolher ou planejar uma hunt.',ex:'/hunt name:"Nome da hunt"'},
-    {c:'/charm',cat:'Game Database',t:'Consultar charm',d:'Pesquisa charms e informações disponíveis.',when:'Para apoiar decisões de progressão.',ex:'/charm name:Freeze'},
-    {c:'/outfit',cat:'Game Database',t:'Consultar outfit',d:'Pesquisa outfit e requisitos disponíveis na base.',when:'Para completar outfits sem procurar em várias páginas.',ex:'/outfit name:"Nome do outfit"'},
-    {c:'/mount',cat:'Game Database',t:'Consultar mount',d:'Pesquisa mounts e requisitos disponíveis na base.',when:'Para descobrir como obter uma montaria.',ex:'/mount name:"Nome da mount"'},
-    {c:'/imbuement guia',cat:'Game Database',t:'Aprender o Imbuement Advisor',d:'Mostra exemplos de uso e ensina a consultar o assistente de imbuements.',when:'Use primeiro se você ainda não conhece a sintaxe.',ex:'/imbuement guia'},
-    {c:'/imbuement buscar',cat:'Game Database',t:'Buscar imbuement em linguagem natural',d:'Você descreve o objetivo — mana helmet, proteção gelo armor, crit bow, bp cap — e o bot encontra opções.',when:'Quando você sabe o que quer melhorar, mas não lembra o nome do imbuement.',ex:'/imbuement buscar termo:"proteção gelo armor"'},
-    {c:'/imbuement receita',cat:'Game Database',t:'Receita e custo do imbuement',d:'Mostra materiais, efeito e custo do nível Basic, Intricate ou Powerful.',when:'Antes de comprar materiais ou ir ao shrine.',ex:'/imbuement receita tipo:void nivel:powerful'},
-    {c:'/imbuement item',cat:'Game Database',t:'Imbuements por equipamento',d:'Lista imbuements compatíveis com o tipo de item escolhido.',when:'Quando você quer saber o que cabe em armor, helmet, shield, spellbook etc.',ex:'/imbuement item equipamento:armor'},
-
-    {c:'/malveria',cat:'Social',t:'Malveria HQ',d:'Abre o ponto de entrada temático do DZbot para o mundo Malveria.',when:'Atalho central para a experiência do servidor.',ex:'/malveria'},
-    {c:'/vergonha',cat:'Social',t:'Hall de mortes',d:'Ranking social das mortes observadas nos últimos 7 dias.',when:'Para zoeira e leitura rápida de quem mais morreu.',ex:'/vergonha'},
-    {c:'/bagre',cat:'Social',t:'Bagrice 24h',d:'Mede a "bagrice" recente de um usuário/personagem conforme sinais sociais do bot.',when:'Para brincar com a galera sem perder o contexto do jogo.',ex:'/bagre user:@alguem'},
-    {c:'/zoeira',cat:'Social',t:'Zoeira consentida',d:'Gera interação social leve respeitando a lógica de consentimento do recurso.',when:'Para entretenimento dentro da guild.',ex:'/zoeira user:@alguem'},
-    {c:'/resumo',cat:'Social',t:'Resumo social',d:'Entrega um pulso social de Malveria com destaques observados.',when:'Para pegar o clima do servidor/guild rapidamente.',ex:'/resumo'},
-    {c:'/musica',cat:'Social',t:'Música e pedidos',d:'Abre painel e recursos de pedidos de música integrados à experiência da guild.',when:'Para social e entretenimento.',ex:'/musica'},
-    {c:'/rashid',cat:'Utilidades',t:'Rashid hoje',d:'Mostra onde o Rashid está no dia.',when:'Consulta diária rápida.',ex:'/rashid'},
-    {c:'/roll',cat:'Utilidades',t:'Número aleatório',d:'Rola um número entre mínimo e máximo opcionais.',when:'Decisões rápidas, loot ou brincadeiras.',ex:'/roll min:1 max:100'}
-  ];
+  {
+    "c": "/bans",
+    "cat": "Guild & Radar",
+    "t": "Bans ativos e histórico observado pelo bot",
+    "d": "Bans ativos e histórico observado pelo bot. Personagem para consultar o histórico",
+    "when": "Use quando você quiser: bans ativos e histórico observado pelo bot.",
+    "ex": "/bans"
+  },
+  {
+    "c": "/bazar",
+    "cat": "Bazaar",
+    "t": "Bazaar Intelligence de Malveria",
+    "d": "Bazaar Intelligence de Malveria. Ação: Agora — Top 10, Monitorar, Meus monitores, Remover monitor, Detalhe do leilão. Vocação: Royal Paladin, Elite Knight, Elder Druid, Master Sorcerer, Exalted Monk. Level mínimo Teto de lance em Rubini Coins",
+    "when": "Use quando você quiser: bazaar Intelligence de Malveria.",
+    "ex": "/bazar acao:agora"
+  },
+  {
+    "c": "/player add",
+    "cat": "Player",
+    "t": "Adiciona um personagem",
+    "d": "Adiciona um personagem. Nome",
+    "when": "Use quando você quiser: adiciona um personagem.",
+    "ex": "/player add character:Nome do Player"
+  },
+  {
+    "c": "/player remove",
+    "cat": "Player",
+    "t": "Remove um personagem",
+    "d": "Remove um personagem. Nome",
+    "when": "Use quando você quiser: remove um personagem.",
+    "ex": "/player remove character:Nome do Player"
+  },
+  {
+    "c": "/player list",
+    "cat": "Player",
+    "t": "Lista personagens",
+    "d": "Lista personagens",
+    "when": "Use quando você quiser: lista personagens.",
+    "ex": "/player list"
+  },
+  {
+    "c": "/player info",
+    "cat": "Player",
+    "t": "Consulta um personagem",
+    "d": "Consulta um personagem. Nome",
+    "when": "Use quando você quiser: consulta um personagem.",
+    "ex": "/player info character:Nome do Player"
+  },
+  {
+    "c": "/player online",
+    "cat": "Player",
+    "t": "Lista quem está online",
+    "d": "Lista quem está online",
+    "when": "Use quando você quiser: lista quem está online.",
+    "ex": "/player online"
+  },
+  {
+    "c": "/player history",
+    "cat": "Player",
+    "t": "Histórico",
+    "d": "Histórico. Nome",
+    "when": "Use quando você quiser: histórico.",
+    "ex": "/player history character:Nome do Player"
+  },
+  {
+    "c": "/track add",
+    "cat": "Guild & Radar",
+    "t": "Adiciona um player ao radar",
+    "d": "Adiciona um player ao radar. Nome do player",
+    "when": "Use quando você quiser: adiciona um player ao radar.",
+    "ex": "/track add player:Nome do Player"
+  },
+  {
+    "c": "/track remove",
+    "cat": "Guild & Radar",
+    "t": "Remove um player do radar",
+    "d": "Remove um player do radar. Nome do player",
+    "when": "Use quando você quiser: remove um player do radar.",
+    "ex": "/track remove player:Nome do Player"
+  },
+  {
+    "c": "/track list",
+    "cat": "Guild & Radar",
+    "t": "Lista o radar",
+    "d": "Lista o radar",
+    "when": "Use quando você quiser: lista o radar.",
+    "ex": "/track list"
+  },
+  {
+    "c": "/track info",
+    "cat": "Guild & Radar",
+    "t": "Mostra um player monitorado",
+    "d": "Mostra um player monitorado. Nome do player",
+    "when": "Use quando você quiser: mostra um player monitorado.",
+    "ex": "/track info player:Nome do Player"
+  },
+  {
+    "c": "/track alerts",
+    "cat": "Guild & Radar",
+    "t": "Liga ou desliga os alertas",
+    "d": "Liga ou desliga os alertas. Nome do player Estado: Ligados, Desligados.",
+    "when": "Use quando você quiser: liga ou desliga os alertas.",
+    "ex": "/track alerts player:Nome do Player state:on"
+  },
+  {
+    "c": "/radar status",
+    "cat": "Guild & Radar",
+    "t": "Saúde do radar",
+    "d": "Saúde do radar",
+    "when": "Use quando você quiser: saúde do radar.",
+    "ex": "/radar status"
+  },
+  {
+    "c": "/radar channel",
+    "cat": "Guild & Radar",
+    "t": "Define o canal de alertas",
+    "d": "Define o canal de alertas. Canal",
+    "when": "Use quando você quiser: define o canal de alertas.",
+    "ex": "/radar channel channel:#dz-radar"
+  },
+  {
+    "c": "/radar timeline",
+    "cat": "Guild & Radar",
+    "t": "Últimos eventos do radar",
+    "d": "Últimos eventos do radar",
+    "when": "Use quando você quiser: últimos eventos do radar.",
+    "ex": "/radar timeline"
+  },
+  {
+    "c": "/ranking",
+    "cat": "Ranking & Skills",
+    "t": "Ranking interno",
+    "d": "Ranking interno. Período: Hoje, 7 dias, 30 dias. Critério: Levels ganhos, Deaths, Tempo online, Maior sessão, 🌎 Top 20 Level Malveria, 🌎 Top 10 EXP Malveria, 🌎 Top 20 Magic, 🌎 Top 20 Distance +17.",
+    "when": "Use quando você quiser: ranking interno.",
+    "ex": "/ranking"
+  },
+  {
+    "c": "/musica painel",
+    "cat": "Social",
+    "t": "Abre a central",
+    "d": "Abre a central",
+    "when": "Use quando você quiser: abre a central.",
+    "ex": "/musica painel"
+  },
+  {
+    "c": "/musica pedir",
+    "cat": "Social",
+    "t": "Adiciona um pedido",
+    "d": "Adiciona um pedido. URL ou nome",
+    "when": "Use quando você quiser: adiciona um pedido.",
+    "ex": "/musica pedir musica:Nome ou URL"
+  },
+  {
+    "c": "/musica pedidos",
+    "cat": "Social",
+    "t": "Mostra pedidos",
+    "d": "Mostra pedidos",
+    "when": "Use quando você quiser: mostra pedidos.",
+    "ex": "/musica pedidos"
+  },
+  {
+    "c": "/pt",
+    "cat": "PT & Organização",
+    "t": "Painel interativo da PT",
+    "d": "Painel interativo da PT",
+    "when": "Use quando você quiser: painel interativo da PT.",
+    "ex": "/pt"
+  },
+  {
+    "c": "/trial",
+    "cat": "Começar",
+    "t": "Mostra licença ou tempo restante do trial deste servidor",
+    "d": "Mostra licença ou tempo restante do trial deste servidor",
+    "when": "Use quando você quiser: mostra licença ou tempo restante do trial deste servidor.",
+    "ex": "/trial"
+  },
+  {
+    "c": "/respawn bind",
+    "cat": "PT & Organização",
+    "t": "Define seu personagem padrão",
+    "d": "Define seu personagem padrão. Seu char",
+    "when": "Use quando você quiser: define seu personagem padrão.",
+    "ex": "/respawn bind character:Nome do Player"
+  },
+  {
+    "c": "/respawn add",
+    "cat": "PT & Organização",
+    "t": "Cadastra/atualiza um respawn",
+    "d": "Cadastra/atualiza um respawn. Código curto, ex. ingol-5 Nome do respawn Limite em minutos Grace do próximo da fila",
+    "when": "Use quando você quiser: cadastra/atualiza um respawn.",
+    "ex": "/respawn add code:ingol-5 name:Nome"
+  },
+  {
+    "c": "/respawn list",
+    "cat": "PT & Organização",
+    "t": "Lista respawns e ocupação",
+    "d": "Lista respawns e ocupação",
+    "when": "Use quando você quiser: lista respawns e ocupação.",
+    "ex": "/respawn list"
+  },
+  {
+    "c": "/respawn claim",
+    "cat": "PT & Organização",
+    "t": "Assume um respawn",
+    "d": "Assume um respawn. Código Char; opcional se já usou bind Tempo desejado",
+    "when": "Use quando você quiser: assume um respawn.",
+    "ex": "/respawn claim code:ingol-5"
+  },
+  {
+    "c": "/respawn queue",
+    "cat": "PT & Organização",
+    "t": "Entra na fila",
+    "d": "Entra na fila. Código Char; opcional se já usou bind",
+    "when": "Use quando você quiser: entra na fila.",
+    "ex": "/respawn queue code:ingol-5"
+  },
+  {
+    "c": "/respawn leave",
+    "cat": "PT & Organização",
+    "t": "Sai da fila",
+    "d": "Sai da fila. Código",
+    "when": "Use quando você quiser: sai da fila.",
+    "ex": "/respawn leave code:ingol-5"
+  },
+  {
+    "c": "/respawn release",
+    "cat": "PT & Organização",
+    "t": "Libera o respawn",
+    "d": "Libera o respawn. Código",
+    "when": "Use quando você quiser: libera o respawn.",
+    "ex": "/respawn release code:ingol-5"
+  },
+  {
+    "c": "/respawn info",
+    "cat": "PT & Organização",
+    "t": "Mostra ocupação e fila",
+    "d": "Mostra ocupação e fila. Código",
+    "when": "Use quando você quiser: mostra ocupação e fila.",
+    "ex": "/respawn info code:ingol-5"
+  },
+  {
+    "c": "/respawn history",
+    "cat": "PT & Organização",
+    "t": "Histórico recente",
+    "d": "Histórico recente. Código",
+    "when": "Use quando você quiser: histórico recente.",
+    "ex": "/respawn history code:ingol-5"
+  },
+  {
+    "c": "/respawn pause",
+    "cat": "PT & Organização",
+    "t": "Pausa/reativa um respawn",
+    "d": "Pausa/reativa um respawn. Código true=pausar",
+    "when": "Use quando você quiser: pausa/reativa um respawn.",
+    "ex": "/respawn pause code:ingol-5 state:on"
+  },
+  {
+    "c": "/guildwatch add",
+    "cat": "Guild & Radar",
+    "t": "Monitora uma guild",
+    "d": "Monitora uma guild. Nome da guild Classificação: Enemy, Neutral, Ally.",
+    "when": "Use quando você quiser: monitora uma guild.",
+    "ex": "/guildwatch add guild:Nome da Guild"
+  },
+  {
+    "c": "/guildwatch remove",
+    "cat": "Guild & Radar",
+    "t": "Remove uma guild",
+    "d": "Remove uma guild. Nome da guild",
+    "when": "Use quando você quiser: remove uma guild.",
+    "ex": "/guildwatch remove guild:Nome da Guild"
+  },
+  {
+    "c": "/guildwatch list",
+    "cat": "Guild & Radar",
+    "t": "Lista guilds monitoradas",
+    "d": "Lista guilds monitoradas",
+    "when": "Use quando você quiser: lista guilds monitoradas.",
+    "ex": "/guildwatch list"
+  },
+  {
+    "c": "/guildwatch status",
+    "cat": "Guild & Radar",
+    "t": "Status de uma guild",
+    "d": "Status de uma guild. Nome da guild",
+    "when": "Use quando você quiser: status de uma guild.",
+    "ex": "/guildwatch status guild:Nome da Guild"
+  },
+  {
+    "c": "/guildwatch refresh",
+    "cat": "Guild & Radar",
+    "t": "Força descoberta de membros públicos",
+    "d": "Força descoberta de membros públicos. Nome da guild",
+    "when": "Use quando você quiser: força descoberta de membros públicos.",
+    "ex": "/guildwatch refresh guild:Nome da Guild"
+  },
+  {
+    "c": "/charintel",
+    "cat": "Player",
+    "t": "DZ Character Intelligence",
+    "d": "DZ Character Intelligence. Personagem",
+    "when": "Use quando você quiser: dZ Character Intelligence.",
+    "ex": "/charintel character:Nome do Player"
+  },
+  {
+    "c": "/team create",
+    "cat": "PT & Organização",
+    "t": "Cria um evento/PT",
+    "d": "Cria um evento/PT. Código curto Nome do evento HH:MM ou ISO com -03:00 Máximo de players",
+    "when": "Use quando você quiser: cria um evento/PT.",
+    "ex": "/team create code:ingol-5 title:Hunt da PT when:20:00"
+  },
+  {
+    "c": "/team list",
+    "cat": "PT & Organização",
+    "t": "Lista eventos abertos",
+    "d": "Lista eventos abertos",
+    "when": "Use quando você quiser: lista eventos abertos.",
+    "ex": "/team list"
+  },
+  {
+    "c": "/team info",
+    "cat": "PT & Organização",
+    "t": "Detalhes",
+    "d": "Detalhes. Código",
+    "when": "Use quando você quiser: detalhes.",
+    "ex": "/team info code:ingol-5"
+  },
+  {
+    "c": "/team join",
+    "cat": "PT & Organização",
+    "t": "Entra no evento",
+    "d": "Entra no evento. Código Seu char Vocação: EK, RP, ED, MS, EM.",
+    "when": "Use quando você quiser: entra no evento.",
+    "ex": "/team join code:ingol-5"
+  },
+  {
+    "c": "/team leave",
+    "cat": "PT & Organização",
+    "t": "Sai do evento",
+    "d": "Sai do evento. Código",
+    "when": "Use quando você quiser: sai do evento.",
+    "ex": "/team leave code:ingol-5"
+  },
+  {
+    "c": "/team start",
+    "cat": "PT & Organização",
+    "t": "Inicia o evento",
+    "d": "Inicia o evento. Código",
+    "when": "Use quando você quiser: inicia o evento.",
+    "ex": "/team start code:ingol-5"
+  },
+  {
+    "c": "/team cancel",
+    "cat": "PT & Organização",
+    "t": "Cancela o evento",
+    "d": "Cancela o evento. Código",
+    "when": "Use quando você quiser: cancela o evento.",
+    "ex": "/team cancel code:ingol-5"
+  },
+  {
+    "c": "/war",
+    "cat": "Guild & Radar",
+    "t": "DZ War Room de Malveria",
+    "d": "DZ War Room de Malveria",
+    "when": "Use quando você quiser: dZ War Room de Malveria.",
+    "ex": "/war"
+  },
+  {
+    "c": "/masslog",
+    "cat": "Guild & Radar",
+    "t": "Últimos sinais de masslog",
+    "d": "Últimos sinais de masslog",
+    "when": "Use quando você quiser: últimos sinais de masslog.",
+    "ex": "/masslog"
+  },
+  {
+    "c": "/linkchar",
+    "cat": "Player",
+    "t": "Vincula um personagem do Tibia a um usuário do Discord",
+    "d": "Vincula um personagem do Tibia a um usuário do Discord. Nome exato do personagem Usuário do Discord; admins podem vincular outra pessoa",
+    "when": "Use quando você quiser: vincula um personagem do Tibia a um usuário do Discord.",
+    "ex": "/linkchar character:Nome do Player"
+  },
+  {
+    "c": "/poke",
+    "cat": "PT & Organização",
+    "t": "Chama a PT com um alerta estilo TeamSpeak",
+    "d": "Chama a PT com um alerta estilo TeamSpeak. Quem receberá o poke: Todos os FRIENDs vinculados, FRIENDs online vinculados. Motivo curto: boss, hunt, castelo, ajuda...",
+    "when": "Use quando você quiser: chama a PT com um alerta estilo TeamSpeak.",
+    "ex": "/poke"
+  },
+  {
+    "c": "/dz agora",
+    "cat": "Player",
+    "t": "Leitura inteligente do que está acontecendo agora",
+    "d": "Leitura inteligente do que está acontecendo agora",
+    "when": "Use quando você quiser: leitura inteligente do que está acontecendo agora.",
+    "ex": "/dz agora"
+  },
+  {
+    "c": "/dz pt",
+    "cat": "Player",
+    "t": "Monta as melhores PTs disponíveis agora",
+    "d": "Monta as melhores PTs disponíveis agora",
+    "when": "Use quando você quiser: monta as melhores PTs disponíveis agora.",
+    "ex": "/dz pt"
+  },
+  {
+    "c": "/dz daily",
+    "cat": "Player",
+    "t": "Resumo premium do dia",
+    "d": "Resumo premium do dia",
+    "when": "Use quando você quiser: resumo premium do dia.",
+    "ex": "/dz daily"
+  },
+  {
+    "c": "/dz dna",
+    "cat": "Player",
+    "t": "Player DNA completo",
+    "d": "Player DNA completo. Personagem; vazio = seu /linkchar",
+    "when": "Use quando você quiser: player DNA completo.",
+    "ex": "/dz dna"
+  },
+  {
+    "c": "/dz conquistas",
+    "cat": "Player",
+    "t": "Conquistas observadas",
+    "d": "Conquistas observadas. Personagem; vazio = seu /linkchar",
+    "when": "Use quando você quiser: conquistas observadas.",
+    "ex": "/dz conquistas"
+  },
+  {
+    "c": "/eu",
+    "cat": "Player",
+    "t": "Seu DZ ID, DNA, evolução e conquistas",
+    "d": "Seu DZ ID, DNA, evolução e conquistas",
+    "when": "Use quando você quiser: seu DZ ID, DNA, evolução e conquistas.",
+    "ex": "/eu"
+  },
+  {
+    "c": "/watchme add",
+    "cat": "Player",
+    "t": "Avise quando esse personagem entrar",
+    "d": "Avise quando esse personagem entrar. Personagem monitorado",
+    "when": "Use quando você quiser: avise quando esse personagem entrar.",
+    "ex": "/watchme add character:Nome do Player"
+  },
+  {
+    "c": "/watchme remove",
+    "cat": "Player",
+    "t": "Remove seu alerta pessoal",
+    "d": "Remove seu alerta pessoal. Personagem",
+    "when": "Use quando você quiser: remove seu alerta pessoal.",
+    "ex": "/watchme remove character:Nome do Player"
+  },
+  {
+    "c": "/watchme list",
+    "cat": "Player",
+    "t": "Lista seus alertas pessoais",
+    "d": "Lista seus alertas pessoais",
+    "when": "Use quando você quiser: lista seus alertas pessoais.",
+    "ex": "/watchme list"
+  },
+  {
+    "c": "/poll",
+    "cat": "Social",
+    "t": "Enquete rápida com botões",
+    "d": "Enquete rápida com botões. Pergunta Opção 1 Opção 2 Opção 3",
+    "when": "Use quando você quiser: enquete rápida com botões.",
+    "ex": "/poll question:Vamos castelo? option1:Sim option2:Não"
+  },
+  {
+    "c": "/lottery",
+    "cat": "Social",
+    "t": "Sorteio rápido",
+    "d": "Sorteio rápido. Nomes separados por vírgula; vazio = membros em cache",
+    "when": "Use quando você quiser: sorteio rápido.",
+    "ex": "/lottery"
+  },
+  {
+    "c": "/share",
+    "cat": "PT & Organização",
+    "t": "Faixa aproximada para shared XP",
+    "d": "Faixa aproximada para shared XP. Seu level",
+    "when": "Use quando você quiser: faixa aproximada para shared XP.",
+    "ex": "/share level:800"
+  },
+  {
+    "c": "/rashid",
+    "cat": "Utilidades",
+    "t": "Localização do Rashid hoje",
+    "d": "Localização do Rashid hoje",
+    "when": "Use quando você quiser: localização do Rashid hoje.",
+    "ex": "/rashid"
+  },
+  {
+    "c": "/roll",
+    "cat": "Utilidades",
+    "t": "Rola um número",
+    "d": "Rola um número. Mínimo Máximo",
+    "when": "Use quando você quiser: rola um número.",
+    "ex": "/roll"
+  },
+  {
+    "c": "/quest info",
+    "cat": "Game Database",
+    "t": "Consulta uma quest",
+    "d": "Consulta uma quest. Quest",
+    "when": "Use quando você quiser: consulta uma quest.",
+    "ex": "/quest info name:Nome"
+  },
+  {
+    "c": "/quest start",
+    "cat": "Game Database",
+    "t": "Inicia o guia",
+    "d": "Inicia o guia. Quest",
+    "when": "Use quando você quiser: inicia o guia.",
+    "ex": "/quest start name:Nome"
+  },
+  {
+    "c": "/quest next",
+    "cat": "Game Database",
+    "t": "Próximo passo",
+    "d": "Próximo passo",
+    "when": "Use quando você quiser: próximo passo.",
+    "ex": "/quest next"
+  },
+  {
+    "c": "/quest previous",
+    "cat": "Game Database",
+    "t": "Passo anterior",
+    "d": "Passo anterior",
+    "when": "Use quando você quiser: passo anterior.",
+    "ex": "/quest previous"
+  },
+  {
+    "c": "/quest reset",
+    "cat": "Game Database",
+    "t": "Reinicia progresso",
+    "d": "Reinicia progresso",
+    "when": "Use quando você quiser: reinicia progresso.",
+    "ex": "/quest reset"
+  },
+  {
+    "c": "/quest requirements",
+    "cat": "Game Database",
+    "t": "Mostra requisitos",
+    "d": "Mostra requisitos. Quest",
+    "when": "Use quando você quiser: mostra requisitos.",
+    "ex": "/quest requirements name:Nome"
+  },
+  {
+    "c": "/quest sources",
+    "cat": "Game Database",
+    "t": "Mostra fonte",
+    "d": "Mostra fonte. Quest",
+    "when": "Use quando você quiser: mostra fonte.",
+    "ex": "/quest sources name:Nome"
+  },
+  {
+    "c": "/access",
+    "cat": "Game Database",
+    "t": "Consulta access",
+    "d": "Consulta access. Nome",
+    "when": "Use quando você quiser: consulta access.",
+    "ex": "/access name:Nome"
+  },
+  {
+    "c": "/creature",
+    "cat": "Game Database",
+    "t": "Consulta creature",
+    "d": "Consulta creature. Nome",
+    "when": "Use quando você quiser: consulta creature.",
+    "ex": "/creature name:Nome"
+  },
+  {
+    "c": "/loot",
+    "cat": "Game Database",
+    "t": "Consulta loot",
+    "d": "Consulta loot. Nome",
+    "when": "Use quando você quiser: consulta loot.",
+    "ex": "/loot name:Nome"
+  },
+  {
+    "c": "/rare",
+    "cat": "Game Database",
+    "t": "Consulta rare",
+    "d": "Consulta rare. Nome",
+    "when": "Use quando você quiser: consulta rare.",
+    "ex": "/rare name:Nome"
+  },
+  {
+    "c": "/drops",
+    "cat": "Game Database",
+    "t": "Consulta drops",
+    "d": "Consulta drops. Nome",
+    "when": "Use quando você quiser: consulta drops.",
+    "ex": "/drops name:Nome"
+  },
+  {
+    "c": "/item",
+    "cat": "Game Database",
+    "t": "Consulta item",
+    "d": "Consulta item. Nome",
+    "when": "Use quando você quiser: consulta item.",
+    "ex": "/item name:Nome"
+  },
+  {
+    "c": "/boss",
+    "cat": "Bosses & Eventos",
+    "t": "Boss Intelligence de Malveria",
+    "d": "Boss Intelligence de Malveria. Boss, upcoming, hot, watch ou \"history Nome\" Categoria canônica: Nemesis, Archfoe, Bane, Sem categoria. World Change monitorado: Raging Mage / Yielothax. Ação do monitor: Acompanhar, Status, Parar.",
+    "when": "Use quando você quiser: boss Intelligence de Malveria.",
+    "ex": "/boss"
+  },
+  {
+    "c": "/events",
+    "cat": "Bosses & Eventos",
+    "t": "Eventos confirmados",
+    "d": "Eventos confirmados",
+    "when": "Use quando você quiser: eventos confirmados.",
+    "ex": "/events"
+  },
+  {
+    "c": "/calendar",
+    "cat": "Bosses & Eventos",
+    "t": "Calendário de eventos",
+    "d": "Calendário de eventos",
+    "when": "Use quando você quiser: calendário de eventos.",
+    "ex": "/calendar"
+  },
+  {
+    "c": "/boosted",
+    "cat": "Bosses & Eventos",
+    "t": "Boosted confirmado",
+    "d": "Boosted confirmado",
+    "when": "Use quando você quiser: boosted confirmado.",
+    "ex": "/boosted"
+  },
+  {
+    "c": "/npc",
+    "cat": "Game Database",
+    "t": "Consulta npc",
+    "d": "Consulta npc. Nome",
+    "when": "Use quando você quiser: consulta npc.",
+    "ex": "/npc name:Nome"
+  },
+  {
+    "c": "/hunt",
+    "cat": "Game Database",
+    "t": "Consulta hunt",
+    "d": "Consulta hunt. Nome",
+    "when": "Use quando você quiser: consulta hunt.",
+    "ex": "/hunt name:Nome"
+  },
+  {
+    "c": "/charm",
+    "cat": "Game Database",
+    "t": "Consulta charm",
+    "d": "Consulta charm. Nome",
+    "when": "Use quando você quiser: consulta charm.",
+    "ex": "/charm name:Nome"
+  },
+  {
+    "c": "/outfit",
+    "cat": "Game Database",
+    "t": "Consulta outfit",
+    "d": "Consulta outfit. Nome",
+    "when": "Use quando você quiser: consulta outfit.",
+    "ex": "/outfit name:Nome"
+  },
+  {
+    "c": "/mount",
+    "cat": "Game Database",
+    "t": "Consulta mount",
+    "d": "Consulta mount. Nome",
+    "when": "Use quando você quiser: consulta mount.",
+    "ex": "/mount name:Nome"
+  },
+  {
+    "c": "/malveria",
+    "cat": "Guild & Radar",
+    "t": "Abre a Malveria HQ",
+    "d": "Abre a Malveria HQ",
+    "when": "Use quando você quiser: abre a Malveria HQ.",
+    "ex": "/malveria"
+  },
+  {
+    "c": "/vergonha",
+    "cat": "Social",
+    "t": "Hall de mortes dos últimos 7 dias",
+    "d": "Hall de mortes dos últimos 7 dias",
+    "when": "Use quando você quiser: hall de mortes dos últimos 7 dias.",
+    "ex": "/vergonha"
+  },
+  {
+    "c": "/bagre",
+    "cat": "Social",
+    "t": "Mede a bagrice por 24h",
+    "d": "Mede a bagrice por 24h. Vítima",
+    "when": "Use quando você quiser: mede a bagrice por 24h.",
+    "ex": "/bagre user:@player"
+  },
+  {
+    "c": "/zoeira",
+    "cat": "Social",
+    "t": "Zoeira leve e consentida com alguém",
+    "d": "Zoeira leve e consentida com alguém. Pessoa Ao escolher você mesmo, liga/desliga sua zoeira",
+    "when": "Use quando você quiser: zoeira leve e consentida com alguém.",
+    "ex": "/zoeira user:@player"
+  },
+  {
+    "c": "/resumo",
+    "cat": "Social",
+    "t": "Resumo social de Malveria",
+    "d": "Resumo social de Malveria",
+    "when": "Use quando você quiser: resumo social de Malveria.",
+    "ex": "/resumo"
+  },
+  {
+    "c": "/quemtaon",
+    "cat": "Guild & Radar",
+    "t": "Mostra rapidamente quem está online",
+    "d": "Mostra rapidamente quem está online",
+    "when": "Use quando você quiser: mostra rapidamente quem está online.",
+    "ex": "/quemtaon"
+  },
+  {
+    "c": "/help",
+    "cat": "Começar",
+    "t": "Ajuda por categorias",
+    "d": "Ajuda por categorias",
+    "when": "Use quando você quiser: ajuda por categorias.",
+    "ex": "/help"
+  },
+  {
+    "c": "/status",
+    "cat": "Começar",
+    "t": "Status dos serviços",
+    "d": "Status dos serviços",
+    "when": "Use quando você quiser: status dos serviços.",
+    "ex": "/status"
+  },
+  {
+    "c": "/ping",
+    "cat": "Começar",
+    "t": "Mede a latência",
+    "d": "Mede a latência",
+    "when": "Use quando você quiser: mede a latência.",
+    "ex": "/ping"
+  },
+  {
+    "c": "/friend add",
+    "cat": "Guild & Radar",
+    "t": "Adiciona personagem",
+    "d": "Adiciona personagem. Nome",
+    "when": "Use quando você quiser: adiciona personagem.",
+    "ex": "/friend add character:Nome do Player"
+  },
+  {
+    "c": "/friend remove",
+    "cat": "Guild & Radar",
+    "t": "Remove personagem",
+    "d": "Remove personagem. Nome",
+    "when": "Use quando você quiser: remove personagem.",
+    "ex": "/friend remove character:Nome do Player"
+  },
+  {
+    "c": "/friend list",
+    "cat": "Guild & Radar",
+    "t": "Lista personagens",
+    "d": "Lista personagens",
+    "when": "Use quando você quiser: lista personagens.",
+    "ex": "/friend list"
+  },
+  {
+    "c": "/friend online",
+    "cat": "Guild & Radar",
+    "t": "Lista online",
+    "d": "Lista online",
+    "when": "Use quando você quiser: lista online.",
+    "ex": "/friend online"
+  },
+  {
+    "c": "/friend history",
+    "cat": "Guild & Radar",
+    "t": "Histórico",
+    "d": "Histórico. Nome",
+    "when": "Use quando você quiser: histórico.",
+    "ex": "/friend history character:Nome do Player"
+  },
+  {
+    "c": "/enemy add",
+    "cat": "Guild & Radar",
+    "t": "Adiciona personagem",
+    "d": "Adiciona personagem. Nome",
+    "when": "Use quando você quiser: adiciona personagem.",
+    "ex": "/enemy add character:Nome do Player"
+  },
+  {
+    "c": "/enemy remove",
+    "cat": "Guild & Radar",
+    "t": "Remove personagem",
+    "d": "Remove personagem. Nome",
+    "when": "Use quando você quiser: remove personagem.",
+    "ex": "/enemy remove character:Nome do Player"
+  },
+  {
+    "c": "/enemy list",
+    "cat": "Guild & Radar",
+    "t": "Lista personagens",
+    "d": "Lista personagens",
+    "when": "Use quando você quiser: lista personagens.",
+    "ex": "/enemy list"
+  },
+  {
+    "c": "/enemy online",
+    "cat": "Guild & Radar",
+    "t": "Lista online",
+    "d": "Lista online",
+    "when": "Use quando você quiser: lista online.",
+    "ex": "/enemy online"
+  },
+  {
+    "c": "/enemy history",
+    "cat": "Guild & Radar",
+    "t": "Histórico",
+    "d": "Histórico. Nome",
+    "when": "Use quando você quiser: histórico.",
+    "ex": "/enemy history character:Nome do Player"
+  },
+  {
+    "c": "/watch add",
+    "cat": "Guild & Radar",
+    "t": "Adiciona personagem",
+    "d": "Adiciona personagem. Nome",
+    "when": "Use quando você quiser: adiciona personagem.",
+    "ex": "/watch add character:Nome do Player"
+  },
+  {
+    "c": "/watch remove",
+    "cat": "Guild & Radar",
+    "t": "Remove personagem",
+    "d": "Remove personagem. Nome",
+    "when": "Use quando você quiser: remove personagem.",
+    "ex": "/watch remove character:Nome do Player"
+  },
+  {
+    "c": "/watch list",
+    "cat": "Guild & Radar",
+    "t": "Lista personagens",
+    "d": "Lista personagens",
+    "when": "Use quando você quiser: lista personagens.",
+    "ex": "/watch list"
+  },
+  {
+    "c": "/watch online",
+    "cat": "Guild & Radar",
+    "t": "Lista online",
+    "d": "Lista online",
+    "when": "Use quando você quiser: lista online.",
+    "ex": "/watch online"
+  },
+  {
+    "c": "/watch history",
+    "cat": "Guild & Radar",
+    "t": "Histórico",
+    "d": "Histórico. Nome",
+    "when": "Use quando você quiser: histórico.",
+    "ex": "/watch history character:Nome do Player"
+  },
+  {
+    "c": "/online",
+    "cat": "Guild & Radar",
+    "t": "Radar de jogadores online",
+    "d": "Radar de jogadores online",
+    "when": "Use quando você quiser: radar de jogadores online.",
+    "ex": "/online"
+  },
+  {
+    "c": "/imbuement guia",
+    "cat": "Game Database",
+    "t": "Mostra exemplos e ensina a usar o assistente",
+    "d": "Mostra exemplos e ensina a usar o assistente",
+    "when": "Use quando você quiser: mostra exemplos e ensina a usar o assistente.",
+    "ex": "/imbuement guia"
+  },
+  {
+    "c": "/imbuement buscar",
+    "cat": "Game Database",
+    "t": "Diga do seu jeito: proteção gelo armor, mana, crit, bp cap...",
+    "d": "Diga do seu jeito: proteção gelo armor, mana, crit, bp cap. Ex.: proteção gelo armor | mana helmet | crit bow | bp cap",
+    "when": "Use quando você quiser: diga do seu jeito: proteção gelo armor, mana, crit, bp cap....",
+    "ex": "/imbuement buscar termo:crit bow"
+  },
+  {
+    "c": "/imbuement receita",
+    "cat": "Game Database",
+    "t": "Mostra materiais, efeito e custo do nível escolhido",
+    "d": "Mostra materiais, efeito e custo do nível escolhido. Qual imbuement?: Bash, Blockade, Chop, Epiphany, Precision, Punch, Slash, Electrify +16. Qual nível?: Basic, Intricate, Powerful.",
+    "when": "Use quando você quiser: mostra materiais, efeito e custo do nível escolhido.",
+    "ex": "/imbuement receita tipo:bash nivel:basic"
+  },
+  {
+    "c": "/imbuement item",
+    "cat": "Game Database",
+    "t": "Lista os imbuements compatíveis com um tipo de equipamento",
+    "d": "Lista os imbuements compatíveis com um tipo de equipamento. Escolha o tipo do item: Armor / Armadura, Helmet / Capacete, Shield / Escudo, Spellbook, Backpack / BP, Boots / Botas, Bow / Arco, Crossbow +5.",
+    "when": "Use quando você quiser: lista os imbuements compatíveis com um tipo de equipamento.",
+    "ex": "/imbuement item equipamento:armor"
+  },
+  {
+    "c": "/dzbot status",
+    "cat": "Começar",
+    "t": "Confirma se o DZbot está online",
+    "d": "Confirma se o DZbot está online",
+    "when": "Use quando você quiser: confirma se o DZbot está online.",
+    "ex": "/dzbot status"
+  },
+  {
+    "c": "/dzbot novidades",
+    "cat": "Começar",
+    "t": "Mostra a release atual e novos recursos",
+    "d": "Mostra a release atual e novos recursos",
+    "when": "Use quando você quiser: mostra a release atual e novos recursos.",
+    "ex": "/dzbot novidades"
+  },
+  {
+    "c": "/dzbot assinatura",
+    "cat": "Começar",
+    "t": "Consulta a assinatura desta guild (somente leitura)",
+    "d": "Consulta a assinatura desta guild (somente leitura)",
+    "when": "Use quando você quiser: consulta a assinatura desta guild (somente leitura).",
+    "ex": "/dzbot assinatura"
+  },
+  {
+    "c": "/dzbot ajuda",
+    "cat": "Começar",
+    "t": "Explica a central do DZbot",
+    "d": "Explica a central do DZbot",
+    "when": "Use quando você quiser: explica a central do DZbot.",
+    "ex": "/dzbot ajuda"
+  }
+];
 
   const automations = [
-    ['🟢','Presence Intelligence','Online/offline de FRIEND, ENEMY e WATCH alimenta alertas, histórico e leitura da PT.'],
-    ['⚔️','PvP Intelligence','Mortes PvP observadas entram na camada de inteligência e podem destacar envolvidos monitorados.'],
-    ['📈','Skill Watch','Skills observadas são acompanhadas e mudanças relevantes podem gerar alertas/digests.'],
-    ['🚀','EXP / Level Watch','Progressão de level e experiência alimenta rankings, evolução e resumos.'],
-    ['👥','PT Pulse','Resumo operacional da PT com presença, hostis, evolução, mortes e skills em horários programados.'],
-    ['💰','Bazaar Watch','Coleção periódica do Bazaar de Malveria e alertas para monitores configurados antes do fechamento.'],
-    ['👹','Boss Intelligence','Snapshots, histórico e sinais alimentam estados como LEARNING/HOT sem transformar ausência de evidência em certeza.'],
-    ['🏰','Castle Result','Após o Castelo, o DZbot pode detectar vencedor, placar, destaques e Legendary Chest e cruzar nomes monitorados.'],
-    ['📅','Event Reminders','Eventos materializados podem gerar lembretes próximos do horário configurado.'],
-    ['🚨','Enemy / Watch Radar','Alvos importantes ganham prioridade visual quando entram, saem ou aparecem em sinais relevantes.'],
-    ['☠️','Death Intelligence','Mortes alimentam histórico, ranking social e contexto operacional.'],
-    ['🧠','Player DNA Memory','Sessões, eventos, evolução e skills acumulam contexto para dossiês e análises futuras.']
-  ];
+  [
+    "📅",
+    "Event Engine",
+    "Timer ativo a cada minuto para processar o motor de eventos do DZbot."
+  ],
+  [
+    "⏰",
+    "Event Reminder",
+    "Timer ativo a cada minuto para entregar lembretes de eventos materializados."
+  ],
+  [
+    "🏰",
+    "Castle Result Intelligence",
+    "Poller ativo a cada minuto para processar o resultado do Castle quando aplicável."
+  ],
+  [
+    "🛡️",
+    "Watchdog",
+    "Health check automático do DZbot a cada 2 minutos, com recuperação operacional."
+  ],
+  [
+    "💚",
+    "Health Watch",
+    "Verificação interna de saúde a cada 5 minutos e publicação de transições de estado."
+  ],
+  [
+    "💰",
+    "Bazaar Watches",
+    "O ambiente possui cache do Bazaar de Malveria e arquivo de watches; /bazar monitor gerencia esses monitores."
+  ],
+  [
+    "📈",
+    "Player/Event Pipeline",
+    "O código de produção inclui pipeline de eventos de player, radar notifier, skill edge e ranking por vocação."
+  ],
+  [
+    "👥",
+    "PT / Social Pulse",
+    "O build de produção inclui commercial-pt-pulse, guild-daily-xp e social-pulse como serviços ativos do produto."
+  ]
+];
 
   const playbooks = [
-    ['Montar hunt agora','/online → /quemtaon → /dz pt → /team create → /poke','Transforma disponibilidade em uma PT organizada.'],
-    ['Acompanhar inimigo','/enemy add → /enemy online → /radar timeline → /masslog → /war','Sai da lista estática e vira leitura operacional.'],
-    ['Analisar um player','/charintel → /player info → /ranking → /watch history','Une ficha, histórico e contexto competitivo.'],
-    ['Comprar char no Bazaar','/bazar acao:agora → /bazar acao:detalhe → /bazar acao:monitor','Filtra oportunidade e deixa o monitor cuidar do fechamento.'],
-    ['Checar bosses','/boss → /boss name:upcoming → /boss name:hot → /boss name:"history Nome"','Prioriza atenção sem confundir sinal com certeza.'],
-    ['Organizar respawn','/respawn bind → /respawn list → /respawn claim ou queue → /respawn release','Organiza ocupação e fila sem discussão manual.'],
-    ['Planejar evento','/calendar → /events → /poll → /team create → /poke','Vai do planejamento à mobilização dentro do Discord.'],
-    ['Evolução pessoal','/eu → /dz dna → /ranking → Skill/EXP Watch','Acompanha evolução sem planilha.'],
-    ['Pesquisar conteúdo','/quest → /access → /item → /creature → /hunt → /imbuement','Mantém a pesquisa dentro do Discord.'],
-    ['Entrou agora no DZbot','/dashboard → /linkchar → /eu → /online → /help','Roteiro simples para descobrir valor em poucos minutos.']
-  ];
+  [
+    "Primeiro contato",
+    "/help → /linkchar → /eu → /online",
+    "Descubra os recursos, vincule seu personagem e veja rapidamente o contexto atual."
+  ],
+  [
+    "Montar PT",
+    "/online → /quemtaon → /dz pt → /team create → /poke",
+    "Use presença, sugestão de PT, evento e chamada da galera em sequência."
+  ],
+  [
+    "Acompanhar hostil",
+    "/enemy add → /enemy online → /radar timeline → /masslog → /war",
+    "Transforme uma lista de inimigos em leitura operacional."
+  ],
+  [
+    "Bazaar",
+    "/bazar acao:agora → /bazar acao:detalhe leilao:12345 → /bazar acao:monitor vocacao:RP",
+    "Pesquise, veja detalhe e crie monitor usando ações que existem na produção."
+  ],
+  [
+    "Respawn",
+    "/respawn bind → /respawn list → /respawn claim code:ingol-5 → /respawn release code:ingol-5",
+    "Organize ocupação, fila e liberação de respawn."
+  ],
+  [
+    "Bosses",
+    "/boss → /events → /calendar → /boosted",
+    "Consulte inteligência de boss e contexto de eventos sem inventar comandos extras."
+  ],
+  [
+    "Pesquisa de jogo",
+    "/quest info name:Nome → /item name:Nome → /creature name:Nome → /hunt name:Nome → /imbuement guia",
+    "Use a base local do DZbot para pesquisar conteúdo dentro do Discord."
+  ],
+  [
+    "Evolução",
+    "/eu → /dz dna → /ranking",
+    "Combine identidade, Player DNA e ranking real disponível no bot."
+  ]
+];
 
   const categories = ['Todos', ...new Set(commands.map(x => x.cat))];
   const grid = root.querySelector('#guideGrid');
@@ -157,7 +1062,7 @@
       </summary>
       <div class="guide-card-body">
         <div class="guide-block"><span>Quando usar</span><p>${esc(x.when)}</p></div>
-        <div class="guide-block"><span>Exemplo</span><div class="guide-example"><code>${esc(x.ex)}</code><button type="button" class="guide-copy" data-copy="${esc(x.ex)}">COPIAR</button></div></div>
+        <div class="guide-block"><span>Exemplo real</span><div class="guide-example"><code>${esc(x.ex)}</code><button type="button" class="guide-copy" data-copy="${esc(x.ex)}">COPIAR</button></div></div>
       </div>
     </details>`;
   }
@@ -184,21 +1089,27 @@
     const b = e.target.closest('[data-guide-cat]');
     if (!b) return;
     active = b.dataset.guideCat;
-    renderFilters(); render();
+    renderFilters();
+    render();
   });
+
   search.addEventListener('input', render);
+
   root.querySelector('#guideExpand').addEventListener('click', () => {
     root.querySelectorAll('.guide-card').forEach(d => d.open = true);
   });
+
   root.addEventListener('click', async e => {
     const b = e.target.closest('[data-copy]');
     if (!b) return;
     try {
       await navigator.clipboard.writeText(b.dataset.copy);
       const toast = document.querySelector('.guide-copy-toast');
-      toast.textContent = 'Comando copiado';
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 1300);
+      if (toast) {
+        toast.textContent = 'Comando copiado';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1300);
+      }
     } catch (_) {}
   });
 })();

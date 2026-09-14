@@ -1,0 +1,22 @@
+DZBOT SITE V20 — PRODUCTION-AUDITED PLAYER GUIDE
+
+Production command count in Raspberry audit: 64
+Player-facing top-level commands included: 56
+Player-facing command/subcommand resources documented: 118
+
+Excluded admin/restricted commands:
+- /settings (permissions=8, description=Configura o bot)
+- /config (permissions=32, description=Diagnóstico administrativo)
+- /testalert (permissions=32, description=Testa o roteamento real sem alterar estatísticas)
+- /health (permissions=32, description=Saúde detalhada do bot)
+- /intelligence (permissions=None, description=Administração da inteligência)
+- /pvp (permissions=32, description=PvP Intelligence de Malveria)
+- /membros (permissions=32, description=Audita Discord, /linkchar e FRIENDs da guild/PT)
+- /dzadmin (permissions=None, description=Administração comercial exclusiva do proprietário do DZbot)
+
+Explicit invalid commands removed:
+- /dashboard
+- /playerinfo
+- /music (real command is /musica)
+
+Source: DZBOT_REAL_AUDIT.txt generated directly from Raspberry production runtime.
